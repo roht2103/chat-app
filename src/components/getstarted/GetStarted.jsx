@@ -4,7 +4,6 @@ const GetStartedComponent = () => {
   return (
     <>
       <Nav />
-      <h1>test</h1>
     </>
   );
 };
