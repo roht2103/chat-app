@@ -10,8 +10,6 @@ const SignUpComponent = () => {
     const email = e.target[1].value;
     const pass = e.target[2].value;
     const file = e.target[3].value;
-    console.log(displayName, email, pass, file);
-    alert("hii");
   };
   return (
     <>
