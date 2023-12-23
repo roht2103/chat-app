@@ -1,7 +1,9 @@
+import { Nav } from "./Nav.jsx";
+import "./Nav.css";
 const GetStartedComponent = () => {
   return (
     <>
-      <button>get started</button>
+      <Nav />
     </>
   );
 };
