@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 const NavComponents = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="nav">
@@ -6,8 +8,8 @@ const NavComponents = () => {
           <h1>logo</h1>
         </span>
         <span className="links">
-          <a href="">Log In</a>
-          <a href="">Sign up</a>
+          <button onClick={() => navigate("login-page")}>Log In</button>
+          <button>Sign up</button>
         </span>
       </div>
     </>
