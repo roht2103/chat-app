@@ -9,7 +9,7 @@ const NavComponents = () => {
         </span>
         <span className="links">
           <button onClick={() => navigate("login-page")}>Log In</button>
-          <button>Sign up</button>
+          <button onClick={() => navigate("signUp-page")}>Sign up</button>
         </span>
       </div>
     </>
