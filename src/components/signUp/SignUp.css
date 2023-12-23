@@ -1,14 +1,19 @@
 .body {
   background-color: #e9ebed;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* position: relative; */
 }
 .body section {
-  height: 80vh;
+  height: 80%;
   width: 80vw;
   display: flex;
+  position: sticky;
+  padding: 5rem;
+  /* min-width: 1000px; */
 }
 .body section div {
   height: 100%;
@@ -17,6 +22,7 @@
 }
 .body section .login-form {
   width: 60%;
+  height: auto;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   background-color: #1c2636;
@@ -66,6 +72,7 @@
 }
 .body section div:nth-child(1) {
   width: 40%;
+  height: auto;
   background-color: #b473d7;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -79,4 +86,36 @@
 }
 .body section div:nth-child(1) img {
   height: 60%;
+}
+@media (max-width: 1323px) {
+  .body section .login-form form {
+    width: 100%;
+  }
+
+  .body section {
+    /* justify-content: center; */
+    padding: 5rem 0rem;
+  }
+}
+@media (max-width: 1200px) {
+  .body section .login-form {
+    width: 80%;
+  }
+}
+@media (max-width: 1120px) {
+  .body section {
+    width: 90%;
+  }
+}
+@media (max-width: 930px) {
+  .body section .login-form {
+    width: 90%;
+  }
+  .body section div:nth-child(1) {
+    display: none;
+  }
+  .body section {
+    justify-content: center;
+    margin: 3rem 0rem;
+  }
 }
