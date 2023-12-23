@@ -4,6 +4,15 @@ import signUpImg from "../../assets/signUp.svg";
 import avatar from "../../assets/avatar.svg";
 const SignUpComponent = () => {
   const navigate = useNavigate();
+  const getUserData = (e) => {
+    e.preventDefault();
+    const displayName = e.target[0].value;
+    const email = e.target[1].value;
+    const pass = e.target[2].value;
+    const file = e.target[3].value;
+    console.log(displayName, email, pass, file);
+    alert("hii");
+  };
   return (
     <>
       <div className="body">
@@ -13,7 +22,7 @@ const SignUpComponent = () => {
           </div>
           <div className="login-form">
             <h1>Get Started</h1>
-            <form>
+            <form onSubmit={getUserData}>
               <input
                 type="text"
                 id="displayName"
@@ -33,8 +42,13 @@ const SignUpComponent = () => {
                 placeholder="Confirm Password"
                 required
               />
-              <input type="file" id="avatar" style={{ display: "none" }} />
-              <label for="avatar" className="avatar">
+              <input
+                type="file"
+                id="avatar"
+                style={{ display: "none" }}
+                required
+              />
+              <label htmlFor="avatar" className="avatar">
                 <img src={avatar} alt="avatar.svg" height="40px" />
                 <p>Add an Avatar</p>
               </label>
