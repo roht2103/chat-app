@@ -1,11 +1,11 @@
 import { useState } from "react";
-
+import { GetStarted } from ".//components//GetStarted";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <h1>hello</h1>
+      <GetStarted />
     </>
   );
 }
