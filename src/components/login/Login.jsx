@@ -11,7 +11,7 @@ const LoginComponent = () => {
             <img src={signUpImg} alt="signUp.svg" />
           </div>
           <div className="login-form">
-            <h1>Get Started</h1>
+            <h1>Log in</h1>
             <form>
               <input type="email" id="email" placeholder="email" required />
               <input
