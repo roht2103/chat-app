@@ -24,7 +24,7 @@
   border-bottom-left-radius: 0.5rem;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  scrollbar-width: 0px;
+  overflow: hidden;
   /* border-right: 1px solid rgb(175, 175, 175); */
 }
 .window .chats {
