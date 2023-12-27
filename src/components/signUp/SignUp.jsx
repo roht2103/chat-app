@@ -4,12 +4,10 @@ import signUpImg from "../../assets/signUp.svg";
 import avatar from "../../assets/avatar.svg";
 const SignUpComponent = () => {
   const navigate = useNavigate();
-  const getUserData = (e) => {
+  const clickHandeler = (e) => {
     e.preventDefault();
-    const displayName = e.target[0].value;
-    const email = e.target[1].value;
-    const pass = e.target[2].value;
-    const file = e.target[3].value;
+    navigate("/user-chat-window");
+    alert("hello");
   };
   return (
     <>
@@ -20,7 +18,7 @@ const SignUpComponent = () => {
           </div>
           <div className="login-form">
             <h1>Get Started</h1>
-            <form onSubmit={getUserData}>
+            <form onSubmit={clickHandeler}>
               <input
                 type="text"
                 id="displayName"

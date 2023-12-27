@@ -3,6 +3,10 @@ import signUpImg from "../../assets/signUp.svg";
 import avatar from "../../assets/avatar.svg";
 const LoginComponent = () => {
   const navigate = useNavigate();
+  const clickHandeler = (e) => {
+    e.preventDefault();
+    navigate("/user-chat-window");
+  };
   return (
     <>
       <div className="body">
@@ -20,7 +24,12 @@ const LoginComponent = () => {
                 placeholder="Password"
                 required
               />
-              <input type="submit" id="submit-btn" value="Log In" />
+              <input
+                onClick={clickHandeler}
+                type="submit"
+                id="submit-btn"
+                value="Log In"
+              />
               <p>
                 Don't have an Account..?
                 <button

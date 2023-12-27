@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Nav } from "./Nav.jsx";
 import { Login } from "../login/Login.jsx";
 import { SignUp } from "../signUp/SignUp.jsx";
+import { Home } from "../userChatWindow/Home.jsx";
 
 const GetStartedComponent = () => {
   return (
@@ -28,6 +29,7 @@ const GetStartedComponent = () => {
         {/* Route without Nav */}
         <Route path="/login-page" element={<Login />} />
         <Route path="/signup-page" element={<SignUp />} />
+        <Route path="/user-chat-window" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
