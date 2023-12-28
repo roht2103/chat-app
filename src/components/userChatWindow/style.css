@@ -16,7 +16,7 @@
   display: flex;
 }
 .window section {
-  border: 1px solid rgb(175, 175, 175);
+  /* border: 1px solid rgb(175, 175, 175); */
 }
 .window .sidebar {
   width: 40%;
@@ -124,7 +124,7 @@
   font-size: 1.2rem;
 }
 .search {
-  border-bottom: 2px solid rgb(158, 158, 158);
+  /* border-bottom: 2px solid rgb(158, 158, 158); */
   height: fit-content;
   /* background-color: #4e5e79; */
 }
