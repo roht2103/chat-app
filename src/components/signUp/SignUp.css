@@ -48,6 +48,7 @@
   border-radius: 5px;
   font-size: 1.2rem;
   color: #b473d7;
+  outline: none;
   /* border: 3px solid #b473d7; */
 }
 .body section .login-form form .avatar {
