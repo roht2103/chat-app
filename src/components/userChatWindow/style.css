@@ -94,6 +94,7 @@
   /* box-shadow: 1px 1px 10px 1px #999999; */
 }
 .menu-ham .menu li {
+  cursor: pointer;
   border-radius: 0.3rem;
   margin: 0.2rem 0.5rem;
   padding: 0.2rem 0.5rem;
@@ -163,7 +164,7 @@ input::placeholder {
 }
 ::-webkit-scrollbar {
   /* display: none; */
-  width: 3px;
+  width: 4px;
   position: relative;
 }
 .chatUsers {
@@ -187,6 +188,10 @@ input::placeholder {
 }
 .userChatInfo {
   font-size: 1.5rem;
+}
+.userChatInfo p {
+  font-size: 1.1rem;
+  color: rgb(205, 203, 203);
 }
 @media (max-width: 1300px) {
   .window {
