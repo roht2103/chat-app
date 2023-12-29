@@ -1,4 +1,6 @@
 import "./style.css";
+import { Messages } from "./Messages.jsx";
+import { Input } from "./Input.jsx";
 import videoIcon from "../../assets/video-solid.svg";
 import more from "../../assets/more.svg";
 export const Chat = () => {
@@ -25,6 +27,8 @@ export const Chat = () => {
           <img className="ham" src={more} alt="more" />
         </div>
       </div>
+      <Messages />
+      <Input />
     </div>
   );
 };

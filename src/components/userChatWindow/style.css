@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-y: scroll !important;
+  /* overflow-y: scroll !important; */
   min-height: 500px;
   /* background-color: #c0aecc; */
 }
@@ -196,6 +196,8 @@ input::placeholder {
   flex: 1;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
 }
 .chatInfo {
   display: flex;
@@ -213,6 +215,50 @@ input::placeholder {
 .chatInfo .chatIcons {
   display: flex;
   align-items: center;
+}
+.messages {
+  flex: 1;
+  overflow-y: scroll;
+}
+.input {
+  border-bottom-right-radius: 0.5rem;
+  height: 10%;
+  background-color: rgb(214, 214, 214);
+}
+.input form {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  /* border: 1px solid; */
+}
+.input form .send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex: 1;
+  padding: 5px;
+}
+.input form .send label {
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.input form .send label img {
+  height: 30px;
+}
+.input form input::placeholder {
+  color: gray;
+}
+.input form input {
+  border: none;
+  width: 88%;
+  outline: none;
+  height: 100%;
+  background-color: rgb(214, 214, 214);
+  padding: 0rem 1rem;
+  font-size: 1.4rem;
+  color: #253248;
 }
 
 @media (max-width: 1300px) {
@@ -232,6 +278,9 @@ input::placeholder {
   .chatInfo {
     border-radius: 0;
   }
+  .input {
+    border-radius: 0;
+  }
 }
 @media (max-width: 1100px) {
   .chat-nav .logo {
@@ -243,5 +292,8 @@ input::placeholder {
   }
   .userChat {
     padding-left: 1rem;
+  }
+  .input form input {
+    width: 85%;
   }
 }
