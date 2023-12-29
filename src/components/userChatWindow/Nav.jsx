@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import more from "../../assets/more.svg";
 import "./style.css";
 export const Nav = () => {
   const menus = ["setting", "log-out"];
@@ -21,17 +22,20 @@ export const Nav = () => {
       <span>
         <div>
           <img
+            className="userImg"
             src="https://plus.unsplash.com/premium_photo-1672239496290-5061cfee7ebb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWVufGVufDB8fDB8fHww"
             alt="user-img"
           />
           <p className="userName">Attie Patatie</p>
         </div>
         <div className="menu-ham">
-          <div ref={hamRef} className="ham" onClick={() => showMenu()}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+          <img
+            ref={hamRef}
+            className="ham"
+            onClick={() => showMenu()}
+            src={more}
+            alt="more"
+          />
           {open && (
             <ul ref={menuRef} className="menu">
               {menus.map((menu) => (

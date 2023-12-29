@@ -66,18 +66,18 @@
   font-size: 2rem;
   display: flex;
 }
-.chat-nav span img {
-  height: 40px;
-  width: 40px;
+.userImg {
+  height: 45px;
+  width: 45px;
   border-radius: 50%;
   object-fit: cover;
 }
-.chat-nav span div {
+.chat-nav span div:nth-child(1) {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.chat-nav span div .ham:hover {
+.ham:hover {
   background-color: #4e5e79;
   transition: 0.2s;
 }
@@ -105,18 +105,13 @@
 .menu-ham .menu li:hover {
   background-color: #253248;
 }
-.chat-nav span div .ham {
-  display: flex;
-  gap: 4px;
-  flex-direction: column;
-  cursor: pointer;
+.ham {
   padding: 0.4rem 1rem;
+  background-color: #253248;
   border-radius: 2px;
+  height: 35px;
+  cursor: pointer;
   /* border: 1px solid; */
-}
-.ham span {
-  border: 2px solid white;
-  border-radius: 50%;
 }
 #log-out-btn {
   background-color: #b473d7;
@@ -202,6 +197,24 @@ input::placeholder {
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
+.chatInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 12%;
+  padding: 0rem 1rem;
+  background-color: #253248;
+  border-top-right-radius: 0.5rem;
+}
+.chatInfo div span {
+  color: #b473d7;
+  font-size: 1.7rem;
+}
+.chatInfo .chatIcons {
+  display: flex;
+  align-items: center;
+}
+
 @media (max-width: 1300px) {
   .window {
     width: 100%;
@@ -214,6 +227,9 @@ input::placeholder {
     border-bottom-left-radius: 0rem;
   }
   .chat {
+    border-radius: 0;
+  }
+  .chatInfo {
     border-radius: 0;
   }
 }
