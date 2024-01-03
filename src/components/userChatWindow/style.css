@@ -225,6 +225,28 @@ input::placeholder {
 .messages {
   flex: 1;
   overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+.message {
+  display: flex;
+  /* align-items: center; */
+  gap: 1rem;
+  margin: 1rem 2rem;
+}
+.message .messageInfo {
+  display: flex;
+  flex-direction: column;
+}
+.message .messageContent {
+  max-width: 70%;
+}
+.message .messageContent p {
+  background-color: rgb(162, 162, 232);
+  padding: 0.7rem 1rem;
+  border-radius: 0rem 0.8rem 0.8rem 0.8rem;
+}
+.message .messageContent .inputImg {
+  width: 100%;
 }
 .input {
   border-bottom-right-radius: 0.5rem;
