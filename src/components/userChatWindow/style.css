@@ -34,6 +34,7 @@
   /* overflow-y: scroll; */
   /* scroll-behavior: smooth; */
   border-right: 1px solid rgb(175, 175, 175);
+  /* display: none; */
 }
 /* .window .sidebar::-webkit-scrollbar {
   display: none;
@@ -212,6 +213,16 @@ input::placeholder {
   color: #b473d7;
   font-size: 1.7rem;
 }
+.chatInfo .back {
+  display: none;
+  padding: 0.4rem 0.4rem;
+  border-radius: 2px;
+  /* border: 1px solid; */
+}
+.chatInfo .back:hover {
+  background-color: #253248;
+  transition: 0.2s;
+}
 .chatInfo .chatIcons {
   display: flex;
   align-items: center;
@@ -323,5 +334,16 @@ input::placeholder {
   }
   .input form input {
     width: 85%;
+  }
+}
+@media (max-width: 555px) {
+  .container .window .sidebar {
+    display: none;
+  }
+  .chatInfo {
+    padding: 0rem 1rem 0rem 0.5rem;
+  }
+  .chatInfo .back {
+    display: inline;
   }
 }
