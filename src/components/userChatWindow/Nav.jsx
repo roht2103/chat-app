@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import more from "../../assets/more.svg";
-import "./style.css";
+import "./style.scss";
 export const Nav = () => {
   const menus = ["setting", "log-out"];
   const [open, setOpen] = useState(false);

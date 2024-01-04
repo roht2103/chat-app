@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 import { ChatUser } from "./ChatUser";
 export const Search = () => {
   return (

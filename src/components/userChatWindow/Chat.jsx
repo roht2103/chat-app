@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 import { Messages } from "./Messages.jsx";
 import { Input } from "./Input.jsx";
 import videoIcon from "../../assets/video-solid.svg";

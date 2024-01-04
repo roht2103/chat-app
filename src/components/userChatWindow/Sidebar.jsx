@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 import { Nav } from "./Nav.jsx";
 import { Search } from "./Search.jsx";
 import { Chats } from "./Chats.jsx";

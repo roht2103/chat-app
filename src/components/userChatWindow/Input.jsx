@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 import img from "../../assets/img.svg";
 import send from "../../assets/send.svg";
 export const Input = () => {

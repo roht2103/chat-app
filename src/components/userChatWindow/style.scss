@@ -22,7 +22,7 @@
   /* border: 1px solid rgb(175, 175, 175); */
 }
 .window .sidebar {
-  width: 40%;
+  width: 30%;
   height: 100%;
   /* border: 1px solid; */
   background-color: #4e5e79;
@@ -243,6 +243,17 @@ input::placeholder {
   /* align-items: center; */
   gap: 1rem;
   margin: 1rem 2rem;
+
+  &.owner {
+    flex-direction: row-reverse;
+
+    .messageContent {
+      p {
+        background-color: rgb(162, 162, 232);
+        border-radius: 0.8rem 0rem 0.8rem 0.8rem;
+      }
+    }
+  }
 }
 .message .messageInfo {
   display: flex;
@@ -252,13 +263,15 @@ input::placeholder {
   max-width: 70%;
 }
 .message .messageContent p {
-  background-color: rgb(162, 162, 232);
+  background-color: white;
   padding: 0.7rem 1rem;
   border-radius: 0rem 0.8rem 0.8rem 0.8rem;
 }
 .message .messageContent .inputImg {
   width: 100%;
+  cursor: pointer;
 }
+
 .input {
   border-bottom-right-radius: 0.5rem;
   height: 10%;

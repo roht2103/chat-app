@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 import { Message } from "./Message.jsx";
 export const Messages = () => {
   return (

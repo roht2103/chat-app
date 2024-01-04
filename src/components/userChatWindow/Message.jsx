@@ -1,10 +1,10 @@
-import "./style.css";
+import "./style.scss";
 export const Message = ({ imgSrc, msg }) => {
   if (imgSrc) {
     console.log(true);
   }
   return (
-    <div className="message">
+    <div className="message owner">
       <div className="messageInfo">
         <img
           className="userImg"

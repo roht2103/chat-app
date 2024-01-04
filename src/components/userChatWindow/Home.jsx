@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 import { Chat } from "./Chat.jsx";
 import { Sidebar } from "./Sidebar.jsx";
 const HomeComponent = () => {
