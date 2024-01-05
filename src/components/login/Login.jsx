@@ -7,7 +7,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
-// import { auth } from "../../firebase";
+import { auth } from "../../firebase";
 const LoginComponent = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
