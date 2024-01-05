@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import more from "../../assets/more.svg";
 import "./style.scss";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
+import { AuthContext } from "../../context/AuthContext";
 export const Nav = () => {
   const menus = ["setting", "log-out"];
   const [open, setOpen] = useState(false);
@@ -20,17 +21,16 @@ export const Nav = () => {
     if (e.target !== menuRef.current && e.target !== hamRef.current)
       setOpen(false);
   });
+
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   return (
     <div className="chat-nav">
       <p className="logo">ZenChat</p>
       <span>
         <div>
-          <img
-            className="userImg"
-            src="https://plus.unsplash.com/premium_photo-1672239496290-5061cfee7ebb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWVufGVufDB8fDB8fHww"
-            alt="user-img"
-          />
-          <p className="userName">Attie Patatie</p>
+          <img className="userImg" src={currentUser.photoURL} alt="user-img" />
+          <p className="userName">{currentUser.displayName}</p>
         </div>
         <div className="menu-ham">
           <img

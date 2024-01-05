@@ -22,8 +22,21 @@ const LoginComponent = () => {
         await signInWithEmailAndPassword(auth, email, password);
         navigate("/home");
       } catch (err) {
-        console.log(err);
-        setErr(true);
+        console.log(err.code);
+        if (err.code === "auth/invalid-credential") {
+          toast.error(err.code, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else {
+          setErr(true);
+        }
       }
     } else {
       toast.warn("Password length must greater than 6 Characters!", {
