@@ -146,7 +146,11 @@ const SignUpComponent = () => {
                 <p>Add an Avatar</p>
               </label>
               <input type="submit" id="submit-btn" value="Create Account" />
-              {err && <span>Something went Wrong...</span>}
+              {err && (
+                <span style={{ textAlign: "center", color: "red" }}>
+                  Something went Wrong...
+                </span>
+              )}
               <p>
                 Already have an Account..?
                 <button

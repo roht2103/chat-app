@@ -6,16 +6,25 @@ import eyeclose from "../../assets/eye-close.svg";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../../firebase";
 const LoginComponent = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
-  const submitHandeler = (e) => {
+  const [err, setErr] = useState(false);
+
+  const submitHandeler = async (e) => {
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
-    console.log(email, password);
     if (password.length > 6) {
-      true;
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        navigate("/home");
+      } catch (err) {
+        console.log(err);
+        setErr(true);
+      }
     } else {
       toast.warn("Password length must greater than 6 Characters!", {
         position: "top-right",
@@ -56,6 +65,11 @@ const LoginComponent = () => {
                 />
               </div>
               <input type="submit" id="submit-btn" value="Log In" />
+              {err && (
+                <span style={{ textAlign: "center", color: "red" }}>
+                  Something went Wrong...
+                </span>
+              )}
               <p>
                 Don't have an Account..?
                 <button
