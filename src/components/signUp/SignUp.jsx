@@ -2,6 +2,8 @@ import "./SignUp.css";
 import { useNavigate } from "react-router-dom";
 import signUpImg from "../../assets/signUp.svg";
 import avatar from "../../assets/avatar.svg";
+import eye from "../../assets/eye.svg";
+import eyeclose from "../../assets/eye-close.svg";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, storage, db } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -13,6 +15,8 @@ import "react-toastify/dist/ReactToastify.css";
 const SignUpComponent = () => {
   const navigate = useNavigate();
   const [err, setErr] = useState(false);
+  const [showPass, setShowPass] = useState(false);
+  const [showCnfPass, setShowCnfPass] = useState(false);
   const clickHandeler = async (e) => {
     e.preventDefault();
 
@@ -100,18 +104,36 @@ const SignUpComponent = () => {
                 required
               />
               <input type="email" id="email" placeholder="email" required />
-              <input
-                type="password"
-                id="pass"
-                placeholder="Password"
-                required
-              />
-              <input
-                type="password"
-                id="confirmPass"
-                placeholder="Confirm Password"
-                required
-              />
+              <div className="inputPass">
+                <input
+                  type={showPass ? "text" : "password"}
+                  id="pass"
+                  placeholder="Password"
+                  required
+                />
+                <img
+                  onClick={() => setShowPass(!showPass)}
+                  style={{ margin: ".5rem", cursor: "pointer" }}
+                  height="50%"
+                  src={showPass ? eyeclose : eye}
+                  alt={showPass ? eyeclose : eye}
+                />
+              </div>
+              <div className="inputPass">
+                <input
+                  type={showCnfPass ? "text" : "password"}
+                  id="confirmPass"
+                  placeholder="Confirm Password"
+                  required
+                />
+                <img
+                  onClick={() => setShowCnfPass(!showCnfPass)}
+                  style={{ margin: ".5rem", cursor: "pointer" }}
+                  height="50%"
+                  src={showCnfPass ? eyeclose : eye}
+                  alt={showCnfPass ? eyeclose : eye}
+                />
+              </div>
               <input
                 name="file"
                 type="file"

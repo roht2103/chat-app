@@ -52,6 +52,10 @@
   outline: none;
   /* border: 3px solid #b473d7; */
 }
+.body section .login-form form .inputPass {
+  background-color: white;
+  border-radius: 5px;
+}
 .body section .login-form form .avatar {
   display: flex;
   align-items: center;

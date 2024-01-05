@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import signUpImg from "../../assets/signUp.svg";
 import avatar from "../../assets/avatar.svg";
+import eye from "../../assets/eye.svg";
+import eyeclose from "../../assets/eye-close.svg";
+import { useState } from "react";
 const LoginComponent = () => {
   const navigate = useNavigate();
+  const [showPass, setShowPass] = useState(false);
   const submitHandeler = (e) => {
     e.preventDefault();
     navigate("/home");
@@ -18,12 +22,21 @@ const LoginComponent = () => {
             <h1>Log in</h1>
             <form onSubmit={submitHandeler}>
               <input type="email" id="email" placeholder="email" required />
-              <input
-                type="password"
-                id="pass"
-                placeholder="Password"
-                required
-              />
+              <div className="inputPass">
+                <input
+                  type={showPass ? "text" : "password"}
+                  id="pass"
+                  placeholder="Password"
+                  required
+                />
+                <img
+                  onClick={() => setShowPass(!showPass)}
+                  style={{ margin: ".5rem", cursor: "pointer" }}
+                  height="50%"
+                  src={showPass ? eyeclose : eye}
+                  alt={showPass ? eyeclose : eye}
+                />
+              </div>
               <input type="submit" id="submit-btn" value="Log In" />
               <p>
                 Don't have an Account..?
