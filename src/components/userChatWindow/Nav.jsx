@@ -4,16 +4,28 @@ import "./style.scss";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 export const Nav = () => {
   const menus = ["setting", "log-out"];
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const showMenu = () => {
     setOpen(!open);
   };
   const goToMenuItem = (menu) => {
     setOpen(false);
     console.log(menu);
-    menu == "log-out" ? signOut(auth) : true;
+    menu == "log-out" ? handleLogout() : true;
+  };
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      // Redirect to the App component ("/" route)
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing out:", error);
+      // Handle error, show message, etc.
+    }
   };
   const menuRef = useRef();
   const hamRef = useRef();
