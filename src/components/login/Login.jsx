@@ -4,12 +4,30 @@ import avatar from "../../assets/avatar.svg";
 import eye from "../../assets/eye.svg";
 import eyeclose from "../../assets/eye-close.svg";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const LoginComponent = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const submitHandeler = (e) => {
     e.preventDefault();
-    navigate("/home");
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+    console.log(email, password);
+    if (password.length > 6) {
+      true;
+    } else {
+      toast.warn("Password length must greater than 6 Characters!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
   return (
     <>
@@ -50,6 +68,7 @@ const LoginComponent = () => {
             </form>
           </div>
         </section>
+        <ToastContainer />
       </div>
     </>
   );
