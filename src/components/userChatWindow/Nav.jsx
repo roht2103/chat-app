@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import more from "../../assets/more.svg";
 import "./style.scss";
+import { auth } from "../../firebase";
+import { signOut } from "firebase/auth";
 export const Nav = () => {
   const menus = ["setting", "log-out"];
   const [open, setOpen] = useState(false);
@@ -9,6 +11,8 @@ export const Nav = () => {
   };
   const goToMenuItem = (menu) => {
     setOpen(false);
+    console.log(menu);
+    menu == "log-out" ? signOut(auth) : true;
   };
   const menuRef = useRef();
   const hamRef = useRef();

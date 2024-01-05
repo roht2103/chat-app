@@ -1,8 +1,5 @@
 import "./style.scss";
 export const Message = ({ imgSrc, msg }) => {
-  if (imgSrc) {
-    console.log(true);
-  }
   return (
     <div className="message owner">
       <div className="messageInfo">

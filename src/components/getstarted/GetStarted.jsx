@@ -1,12 +1,15 @@
 import "./Nav.css";
 // GetStarted.jsx
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { Nav } from "./Nav.jsx";
+import { Nav } from "../../Nav.jsx";
 import { Login } from "../login/Login.jsx";
 import { SignUp } from "../signUp/SignUp.jsx";
 import { Home } from "../userChatWindow/Home.jsx";
+import { useContext } from "react";
 
 const GetStartedComponent = () => {
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   return (
     <BrowserRouter>
       <Routes>
@@ -29,7 +32,7 @@ const GetStartedComponent = () => {
         {/* Route without Nav */}
         <Route path="/login-page" element={<Login />} />
         <Route path="/signup-page" element={<SignUp />} />
-        <Route path="/user-chat-window" element={<Home />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

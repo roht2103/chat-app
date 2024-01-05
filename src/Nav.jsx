@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import messageicon from "../../assets/message-icon.svg";
+import messageicon from "./assets/message-icon.svg";
 const NavComponents = () => {
   const navigate = useNavigate();
   return (

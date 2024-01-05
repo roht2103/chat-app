@@ -5,7 +5,7 @@ const LoginComponent = () => {
   const navigate = useNavigate();
   const submitHandeler = (e) => {
     e.preventDefault();
-    navigate("/user-chat-window");
+    navigate("/home");
   };
   return (
     <>
