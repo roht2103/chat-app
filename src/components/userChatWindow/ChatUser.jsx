@@ -1,4 +1,5 @@
 import "./style.scss";
+
 export const ChatUser = ({ profileUrl, name, lastMsg }) => {
   return (
     <div className="userChat">

@@ -64,6 +64,7 @@ const SignUpComponent = () => {
                   email,
                   photoURL: downloadURL,
                 });
+                await setDoc(doc(db, "userChats", res.user.uid), {});
                 console.log("Profile updated and data saved to Firestore");
               } catch (error) {
                 console.error(

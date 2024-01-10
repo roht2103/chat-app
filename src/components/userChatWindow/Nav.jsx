@@ -14,7 +14,6 @@ export const Nav = () => {
   };
   const goToMenuItem = (menu) => {
     setOpen(false);
-    console.log(menu);
     menu == "log-out" ? handleLogout() : true;
   };
   const handleLogout = async () => {
@@ -35,7 +34,6 @@ export const Nav = () => {
   });
 
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   return (
     <div className="chat-nav">
       <p className="logo">ZenChat</p>
