@@ -240,7 +240,7 @@ input::placeholder {
 }
 .message {
   display: flex;
-  /* align-items: center; */
+  // align-items: center;
   gap: 1rem;
   margin: 1rem 2rem;
 
@@ -260,16 +260,22 @@ input::placeholder {
   flex-direction: column;
 }
 .message .messageContent {
-  max-width: 70%;
+  width: fit-content;
+  max-width: 60%;
 }
 .message .messageContent p {
+  width: fit-content;
+
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
   background-color: white;
   padding: 0.7rem 1rem;
   border-radius: 0rem 0.8rem 0.8rem 0.8rem;
 }
 .message .messageContent .inputImg {
   border-radius: 0.5rem;
-  width: 100%;
+  width: 80%;
   cursor: pointer;
 }
 

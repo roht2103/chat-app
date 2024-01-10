@@ -1,8 +1,8 @@
 import "./style.scss";
 
-export const ChatUser = ({ profileUrl, name, lastMsg }) => {
+export const ChatUser = ({ profileUrl, name, lastMsg, onClick }) => {
   return (
-    <div className="userChat">
+    <div className="userChat" onClick={onClick}>
       <img src={profileUrl} alt="user-img" />
       <div className="userChatInfo">
         <span>{name}</span>
