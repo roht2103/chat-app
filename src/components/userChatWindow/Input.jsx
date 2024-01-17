@@ -109,6 +109,7 @@ export const Input = () => {
             type="submit"
             value="Send"
             style={{ display: "none" }}
+            disabled={!text && !img}
           />
         </div>
       </form>
