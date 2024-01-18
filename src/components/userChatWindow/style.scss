@@ -262,7 +262,7 @@ input::placeholder {
 }
 
 .messageContent {
-  max-width: 60%;
+  max-width: 30%;
 }
 
 .messageContent p {
@@ -417,5 +417,27 @@ input::placeholder {
 
   .chatInfo .back {
     display: inline;
+  }
+}
+.input {
+  .image-preview {
+    position: inherit;
+    display: flex;
+    bottom: 0%;
+    height: 100%;
+
+    .Selected {
+      height: 100%;
+    }
+    button {
+      background-color: rgb(214, 214, 214);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      font-size: 30px;
+      border: 0px;
+      cursor: pointer;
+    }
   }
 }

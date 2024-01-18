@@ -1,4 +1,5 @@
 import "./style.scss";
+import cross from "../../assets/cross.svg";
 import imgIcon from "../../assets/img.svg";
 import send from "../../assets/send.svg";
 import { useState, useContext } from "react";
@@ -18,8 +19,27 @@ import { db, storage } from "../../firebase";
 export const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
+  const [imgPreview, setImgPreview] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
+
+  const handleImageChange = (e) => {
+    const selectedImg = e.target.files[0];
+    setImg(selectedImg);
+
+    // Display image preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImgPreview(reader.result);
+    };
+    reader.readAsDataURL(selectedImg);
+  };
+
+  const clearImage = () => {
+    setImg(null);
+    setImgPreview(null);
+  };
+
   const sendMessage = async (e) => {
     e.preventDefault();
     if (img) {
@@ -81,10 +101,20 @@ export const Input = () => {
     });
     setImg(null);
     setText("");
+    clearImage();
   };
+
   return (
     <div className="input">
       <form onSubmit={(e) => sendMessage(e)}>
+        {imgPreview && (
+          <div className="image-preview">
+            <img src={imgPreview} className="Selected" alt="Selected" />
+            <button type="button" onClick={clearImage}>
+              <img src={cross} height="30px" alt="remove.svg" />
+            </button>
+          </div>
+        )}
         <input
           type="text"
           value={text}
@@ -98,7 +128,7 @@ export const Input = () => {
           <input
             id="file"
             type="file"
-            onChange={(e) => setImg(e.target.files[0])}
+            onChange={(e) => handleImageChange(e)}
             style={{ display: "none" }}
           />
           <label htmlFor="send">
