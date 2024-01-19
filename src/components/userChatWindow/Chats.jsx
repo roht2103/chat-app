@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext.jsx";
 import { db } from "../../firebase";
 import { doc, onSnapshot } from "firebase/firestore";
-export const Chats = () => {
+export const Chats = ({ setChatWindow }) => {
   const [chats, setChats] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
@@ -32,7 +32,10 @@ export const Chats = () => {
         ?.sort((a, b) => b[1].date - a[1].date)
         .map((chat) => (
           <ChatUser
-            onClick={() => handleSelect(chat[1].userInfo)}
+            onClick={() => {
+              handleSelect(chat[1].userInfo);
+              setChatWindow(true);
+            }}
             key={chat[1].userInfo.uid}
             profileUrl={chat[1].userInfo.photoURL}
             name={chat[1].userInfo.displayName}

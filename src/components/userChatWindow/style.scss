@@ -405,10 +405,19 @@ input::placeholder {
     width: 85%;
   }
 }
-
-@media (max-width: 555px) {
-  .container .window .sidebar {
+@media (max-width: 1000px) {
+  .message,
+  .owner {
+    margin: 0.5rem 0rem;
+  }
+}
+@media (max-width: 455px) {
+  .container .window .defaultWindow,
+  .chat {
     display: none;
+  }
+  .container .window .sidebar {
+    width: 100%;
   }
 
   .chatInfo {
@@ -439,5 +448,28 @@ input::placeholder {
       border: 0px;
       cursor: pointer;
     }
+  }
+}
+.defaultWindow {
+  // border: 1px solid;
+  // width: 70%;
+  background-color: #c1cada;
+  // background: linear-gradient(0deg, #c1cada, #253248);
+  gap: 10px;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-size: 4.5rem;
+    color: #b473d7;
+  }
+  p {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
   }
 }
