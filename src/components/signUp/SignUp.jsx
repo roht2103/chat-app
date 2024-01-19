@@ -1,5 +1,5 @@
 import "./SignUp.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import signUpImg from "../../assets/signUp.svg";
 import avatar from "../../assets/avatar.svg";
 import eye from "../../assets/eye.svg";
@@ -161,6 +161,9 @@ const SignUpComponent = () => {
                   Sign In
                 </button>
               </p>
+              <Link className="link" to="/">
+                Go Back
+              </Link>
             </form>
           </div>
         </section>

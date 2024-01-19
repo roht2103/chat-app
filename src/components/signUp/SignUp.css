@@ -126,3 +126,8 @@
     margin: 3rem 0rem;
   }
 }
+.link {
+  text-decoration: none;
+  font-size: 20px;
+  text-align: center;
+}

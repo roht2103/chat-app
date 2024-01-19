@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import signUpImg from "../../assets/signUp.svg";
 import avatar from "../../assets/avatar.svg";
 import eye from "../../assets/eye.svg";
@@ -92,6 +92,9 @@ const LoginComponent = () => {
                   Sign Up
                 </button>
               </p>
+              <Link className="link" to="/">
+                Go Back
+              </Link>
             </form>
           </div>
         </section>
