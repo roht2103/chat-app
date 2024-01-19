@@ -1,6 +1,10 @@
 import "./style.scss";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 export const ChatUser = ({ profileUrl, name, lastMsg, onClick }) => {
+  const { currentUser } = useContext(AuthContext);
+  // console.log("currentuser: ", currentUser.displayName);
   let truncatedMsg;
   if (lastMsg) {
     const truncateText = (text, maxLength) => {
@@ -20,7 +24,7 @@ export const ChatUser = ({ profileUrl, name, lastMsg, onClick }) => {
     <div className="userChat" onClick={onClick}>
       <img src={profileUrl} alt="user-img" />
       <div className="userChatInfo">
-        <span>{name}</span>
+        <span>{name == currentUser.displayName ? name + " (Me)" : name}</span>
         <p>{truncatedMsg}</p>
       </div>
     </div>

@@ -5,9 +5,11 @@ import videoIcon from "../../assets/video-solid.svg";
 import more from "../../assets/more.svg";
 import back from "../../assets/back.svg";
 import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext.jsx";
 export const Chat = () => {
   const { data } = useContext(ChatContext);
+  const { currentUser } = useContext(AuthContext);
   return (
     <div className="chat">
       <div className="chatInfo">
@@ -21,7 +23,11 @@ export const Chat = () => {
         >
           <img height="35px" className="back" src={back} alt="back.svg" />
           <img className="userImg" src={data.user?.photoURL} alt="userImg" />
-          <span>{data.user?.displayName}</span>
+          <span>
+            {data.user?.displayName == currentUser.displayName
+              ? currentUser.displayName + " (Me)"
+              : data.user?.displayName}
+          </span>
         </div>
         <div className="chatIcons">
           <img className="ham" src={videoIcon} alt="videoIcon" />

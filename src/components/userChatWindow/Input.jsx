@@ -118,7 +118,7 @@ export const Input = () => {
         <input
           type="text"
           value={text}
-          placeholder="Type Something..."
+          placeholder={imgPreview ? "Caption (optional)" : "Type Something..."}
           onChange={(e) => setText(e.target.value)}
         />
         <div className="send">

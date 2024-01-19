@@ -25,9 +25,7 @@ export const Chats = () => {
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
   };
-  {
-    Object.entries(chats)?.map((chat) => console.log(chat));
-  }
+
   return (
     <div className="chatUsers">
       {Object.entries(chats)
