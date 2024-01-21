@@ -3,6 +3,7 @@ import cross from "../../assets/cross.svg";
 import imgIcon from "../../assets/img.svg";
 import send from "../../assets/send.svg";
 import { useState, useContext } from "react";
+import { MdBackspace } from "react-icons/md";
 import {
   Timestamp,
   arrayUnion,
@@ -110,9 +111,14 @@ export const Input = () => {
         {imgPreview && (
           <div className="image-preview">
             <img src={imgPreview} className="Selected" alt="Selected" />
-            <button type="button" onClick={clearImage}>
+            {/* <button type="button" onClick={clearImage}>
               <img src={cross} height="30px" alt="remove.svg" />
-            </button>
+            </button> */}
+            <MdBackspace
+              onClick={clearImage}
+              height="30px"
+              className="clearImg"
+            />
           </div>
         )}
         <input

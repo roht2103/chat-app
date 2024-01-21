@@ -1,5 +1,6 @@
 .container {
   width: 100vw;
+  // background-image: linear-gradient(to top, #fbc2eb71 0%, #a6c0ee83 100%);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -225,9 +226,15 @@ input::placeholder {
 }
 
 .chatInfo .back {
-  display: none;
-  padding: 0.4rem 0.4rem;
+  height: 30px;
+  color: white;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin: 0.1rem;
   border-radius: 2px;
+  display: none;
 }
 
 .chatInfo .back:hover {
@@ -412,13 +419,24 @@ input::placeholder {
     margin: 0.5rem 0rem;
   }
 }
-@media (max-width: 555px) {
+@media (max-width: 733px) {
   .container .window .defaultWindow,
   .chat {
-    display: none;
+    // width: 100%;
   }
   .container .window .sidebar {
-    width: 100%;
+    // display: none;
+    transition: 1s;
+    position: absolute;
+    transition: all 0.5s;
+    left: -100%;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  }
+  .chatInfo .back {
+    display: inline;
+  }
+  .container .window .sidebar.active {
+    left: 0;
   }
   .sidebar .chat-nav {
     padding: 0rem 2rem;
@@ -428,33 +446,23 @@ input::placeholder {
   }
 }
 @media (max-width: 455px) {
-  .container .window .defaultWindow,
-  .chat {
-    // display: none;
-  }
-  .container .window .sidebar {
-    // width: 100%;
-  }
-
   .chatInfo {
     padding: 0rem 1rem 0rem 0.5rem;
-  }
-
-  .chatInfo .back {
-    display: inline;
   }
 }
 .input {
   .image-preview {
     position: inherit;
     display: flex;
+    align-items: center;
+    gap: 10px;
     bottom: 0%;
     height: 100%;
 
     .Selected {
       height: 100%;
     }
-    button {
+    .clearImg {
       background-color: rgb(214, 214, 214);
       display: flex;
       justify-content: center;
