@@ -167,6 +167,7 @@ input::placeholder {
 
 ::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
   position: relative;
 }
 
@@ -411,13 +412,28 @@ input::placeholder {
     margin: 0.5rem 0rem;
   }
 }
-@media (max-width: 455px) {
+@media (max-width: 555px) {
   .container .window .defaultWindow,
   .chat {
     display: none;
   }
   .container .window .sidebar {
     width: 100%;
+  }
+  .sidebar .chat-nav {
+    padding: 0rem 2rem;
+  }
+  .sidebar .userChat {
+    padding: 0.5rem 2rem;
+  }
+}
+@media (max-width: 455px) {
+  .container .window .defaultWindow,
+  .chat {
+    // display: none;
+  }
+  .container .window .sidebar {
+    // width: 100%;
   }
 
   .chatInfo {
