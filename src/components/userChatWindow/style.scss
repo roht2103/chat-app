@@ -278,7 +278,11 @@ input::placeholder {
   background-color: #fff;
   padding: 0.7rem 1rem;
   border-radius: 0.5rem;
-  word-wrap: break-word;
+  span {
+    word-wrap: break-word;
+    color: black;
+    font-size: 1.2rem;
+  }
 }
 
 .messageContent .inputImg {

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./style.scss";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
@@ -6,9 +6,29 @@ export const Message = ({ message }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
   const ref = useRef();
+  const [timeString, setTimeString] = useState("");
+  useEffect(() => {
+    const fetchTimestamp = async () => {
+      if (message.date && message.date.seconds && message.date.nanoseconds) {
+        const timestampSeconds = message.date.seconds;
+        const timestampNanoseconds = message.date.nanoseconds;
+        const timestampDate = new Date(
+          timestampSeconds * 1000 + timestampNanoseconds / 1e6
+        );
+        const formattedTimeString = timestampDate.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        setTimeString(formattedTimeString);
+      }
+    };
+
+    fetchTimestamp();
+  }, [message.date]);
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
+  console.log(message);
   return (
     <div ref={ref}>
       <div
@@ -30,7 +50,18 @@ export const Message = ({ message }) => {
             {message.img && (
               <img className="inputImg" src={message.img} alt="" />
             )}
-            {message.text}
+            <span style={{ marginRight: "2rem" }}>{message.text}</span>
+            <p
+              style={{
+                fontSize: ".8rem",
+                padding: "0px",
+                border: "0px",
+                textAlign: "right",
+                color: "gray",
+              }}
+            >
+              {timeString}
+            </p>
           </p>
         </div>
       </div>
