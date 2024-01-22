@@ -25,7 +25,6 @@ export const Chats = ({ setChatWindow, setShow, show }) => {
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
   };
-
   return (
     <div className="chatUsers">
       {Object.entries(chats)
@@ -41,6 +40,7 @@ export const Chats = ({ setChatWindow, setShow, show }) => {
             profileUrl={chat[1].userInfo.photoURL}
             name={chat[1].userInfo.displayName}
             lastMsg={chat[1].lastMessage?.text}
+            time={chat[1].date}
           />
         ))}
     </div>
