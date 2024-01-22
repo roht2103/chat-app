@@ -17,6 +17,7 @@ const SignUpComponent = () => {
   const [err, setErr] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const [showCnfPass, setShowCnfPass] = useState(false);
+
   const clickHandeler = async (e) => {
     e.preventDefault();
 
@@ -66,6 +67,8 @@ const SignUpComponent = () => {
                 });
                 await setDoc(doc(db, "userChats", res.user.uid), {});
                 console.log("Profile updated and data saved to Firestore");
+
+                navigate("/home");
               } catch (error) {
                 console.error(
                   "Error retrieving download URL or updating profile:",
@@ -73,19 +76,16 @@ const SignUpComponent = () => {
                 );
                 setErr(true);
               }
-
-              await setDoc(doc(db, "users", res.user.uid, {}));
             }
           );
         } catch (err) {
           setErr(true);
         }
-        navigate("/home");
       } else {
-        toast("Password length must greater than 6 Characters!");
+        toast("Password length must be greater than 6 Characters!");
       }
     } else {
-      toast("Confirm Password dosen't match Password!");
+      toast("Confirm Password doesn't match Password!");
     }
   };
   return (
