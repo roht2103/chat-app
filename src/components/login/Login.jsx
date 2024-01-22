@@ -114,7 +114,6 @@ const LoginComponent = () => {
             </form>
           </div>
         </section>
-        <ToastContainer />
       </div>
     </>
   );

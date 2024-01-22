@@ -21,7 +21,6 @@ const SignUpComponent = () => {
 
   const clickHandeler = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
     const displayName = e.target[0].value;
     const email = e.target[1].value;
@@ -31,6 +30,7 @@ const SignUpComponent = () => {
 
     if (password === cnfPassword) {
       if (password.length > 6 || cnfPassword.length > 6) {
+        setLoading(true);
         try {
           const res = await createUserWithEmailAndPassword(
             auth,
@@ -72,6 +72,17 @@ const SignUpComponent = () => {
 
                 navigate("/home");
                 setLoading(false);
+                toast.success("Welcome " + displayName + "!", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  color: "#b473d7",
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
               } catch (error) {
                 console.error(
                   "Error retrieving download URL or updating profile:",
@@ -181,7 +192,6 @@ const SignUpComponent = () => {
             </form>
           </div>
         </section>
-        <ToastContainer />
       </div>
     </>
   );
