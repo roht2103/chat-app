@@ -8,19 +8,24 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import BeatLoader from "react-spinners/BeatLoader";
+
 const LoginComponent = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const [err, setErr] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const submitHandeler = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const email = e.target[0].value;
     const password = e.target[1].value;
     if (password.length > 6) {
       try {
         await signInWithEmailAndPassword(auth, email, password);
         navigate("/home");
+        setLoading(false);
       } catch (err) {
         console.log(err.code);
         if (err.code === "auth/invalid-credential") {
@@ -77,7 +82,18 @@ const LoginComponent = () => {
                   alt={showPass ? eyeclose : eye}
                 />
               </div>
-              <input type="submit" id="submit-btn" value="Log In" />
+              {isLoading ? (
+                <BeatLoader
+                  color="#b473d7"
+                  style={{
+                    alignSelf: "center",
+                    width: "fit-content",
+                    padding: "0.7rem 1rem",
+                  }}
+                />
+              ) : (
+                <input type="submit" id="submit-btn" value="Log In" />
+              )}
               {err && (
                 <span style={{ textAlign: "center", color: "red" }}>
                   Something went Wrong...
