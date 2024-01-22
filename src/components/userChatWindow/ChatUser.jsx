@@ -47,7 +47,7 @@ export const ChatUser = ({ profileUrl, name, lastMsg, onClick, time }) => {
       }
     };
 
-    truncatedMsg = truncateText(lastMsg, 20);
+    truncatedMsg = truncateText(lastMsg, 10);
   } else {
     truncatedMsg = "📷 image";
   }

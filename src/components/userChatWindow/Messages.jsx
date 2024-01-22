@@ -20,8 +20,12 @@ export const Messages = () => {
 
   return (
     <div className="messages">
-      {messages.map((m) => (
-        <Message key={m.id} message={m} />
+      {messages.map((m, index) => (
+        <Message
+          key={m.id}
+          message={m}
+          isSame={index > 0 && m.senderId === messages[index - 1].senderId}
+        />
       ))}
     </div>
   );

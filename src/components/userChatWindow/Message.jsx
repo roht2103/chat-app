@@ -2,7 +2,10 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "./style.scss";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
-export const Message = ({ message }) => {
+export const Message = ({ message, isSame }) => {
+  let sty;
+  sty = isSame ? "hidden" : "visible";
+  let margSty = !isSame ? "1rem" : "0rem";
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
   const ref = useRef();
@@ -28,13 +31,13 @@ export const Message = ({ message }) => {
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
-  console.log(message);
   return (
     <div ref={ref}>
       <div
         className={`message ${message.senderId === currentUser.uid && "owner"}`}
+        style={{ marginTop: margSty }}
       >
-        <div className="messageInfo">
+        <div style={{ visibility: sty }} className="messageInfo">
           <img
             className="userImg"
             src={
@@ -46,12 +49,12 @@ export const Message = ({ message }) => {
           />
         </div>
         <div className="messageContent">
-          <p>
+          <p style={{ display: "flex", flexDirection: "column" }}>
             {message.img && (
               <img className="inputImg" src={message.img} alt="" />
             )}
             <span style={{ marginRight: "2rem" }}>{message.text}</span>
-            <p
+            <i
               style={{
                 fontSize: ".8rem",
                 padding: "0px",
@@ -61,7 +64,7 @@ export const Message = ({ message }) => {
               }}
             >
               {timeString}
-            </p>
+            </i>
           </p>
         </div>
       </div>
