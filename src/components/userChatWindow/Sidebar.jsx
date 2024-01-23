@@ -2,12 +2,12 @@ import "./style.scss";
 import { Nav } from "./Nav.jsx";
 import { Search } from "./Search.jsx";
 import { Chats } from "./Chats.jsx";
-export const Sidebar = ({ setChatWindow, setShow, show }) => {
+export const Sidebar = () => {
   return (
-    <section className={show ? "sidebar active" : "sidebar"}>
+    <section className="sidebar">
       <Nav />
       <Search />
-      <Chats setChatWindow={setChatWindow} setShow={setShow} show={show} />
+      <Chats />
     </section>
   );
 };

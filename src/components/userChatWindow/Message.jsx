@@ -1,72 +1,20 @@
-import { useContext, useEffect, useRef, useState } from "react";
 import "./style.scss";
-import { AuthContext } from "../../context/AuthContext";
-import { ChatContext } from "../../context/ChatContext";
-export const Message = ({ message, isSame }) => {
-  let sty;
-  sty = isSame ? "hidden" : "visible";
-  let margSty = !isSame ? "1rem" : "0rem";
-  const { currentUser } = useContext(AuthContext);
-  const { data } = useContext(ChatContext);
-  const ref = useRef();
-  const [timeString, setTimeString] = useState("");
-  useEffect(() => {
-    const fetchTimestamp = async () => {
-      if (message.date && message.date.seconds && message.date.nanoseconds) {
-        const timestampSeconds = message.date.seconds;
-        const timestampNanoseconds = message.date.nanoseconds;
-        const timestampDate = new Date(
-          timestampSeconds * 1000 + timestampNanoseconds / 1e6
-        );
-        const formattedTimeString = timestampDate.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-        setTimeString(formattedTimeString);
-      }
-    };
-
-    fetchTimestamp();
-  }, [message.date]);
-  useEffect(() => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-  }, [message]);
+export const Message = ({ imgSrc, msg }) => {
   return (
-    <div ref={ref}>
-      <div
-        className={`message ${message.senderId === currentUser.uid && "owner"}`}
-        style={{ marginTop: margSty }}
-      >
-        <div style={{ visibility: sty }} className="messageInfo">
-          <img
-            className="userImg"
-            src={
-              message.senderId === currentUser.uid
-                ? currentUser.photoURL
-                : data.user.photoURL
-            }
-            alt="userImg"
-          />
-        </div>
-        <div className="messageContent">
-          <p style={{ display: "flex", flexDirection: "column" }}>
-            {message.img && (
-              <img className="inputImg" src={message.img} alt="" />
-            )}
-            <span style={{ marginRight: "2rem" }}>{message.text}</span>
-            <i
-              style={{
-                fontSize: ".8rem",
-                padding: "0px",
-                border: "0px",
-                textAlign: "right",
-                color: "gray",
-              }}
-            >
-              {timeString}
-            </i>
-          </p>
-        </div>
+    <div className="message owner">
+      <div className="messageInfo">
+        <img
+          className="userImg"
+          src="https://images.unsplash.com/photo-1610088441520-4352457e7095?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1lbnxlbnwwfHwwfHx8MA%3D%3D"
+          alt="userImg"
+        />
+        <span>Just Now</span>
+      </div>
+      <div className="messageContent">
+        <p>
+          <img className="inputImg" src={imgSrc} alt="" />
+          {msg}
+        </p>
       </div>
     </div>
   );
