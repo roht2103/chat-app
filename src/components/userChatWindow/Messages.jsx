@@ -1,12 +1,32 @@
 import "./style.scss";
 import { Message } from "./Message.jsx";
+import { useEffect, useContext, useState } from "react";
+import { onSnapshot } from "firebase/firestore";
+import { ChatContext } from "../../context/ChatContext.jsx";
+import { doc } from "firebase/firestore";
+import { db } from "../../firebase.js";
 export const Messages = () => {
+  const { data } = useContext(ChatContext);
+  const [messages, setMessages] = useState([]);
+  useEffect(() => {
+    const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
+      doc.exists() && setMessages(doc.data().messages);
+    });
+
+    return () => {
+      unSub();
+    };
+  }, [data.chatId]);
+
   return (
     <div className="messages">
-      <Message
-        imgSrc="https://images.unsplash.com/photo-1703967971243-c30bd410ed32?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D"
-        msg="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae culpa, non eligendi debitis odit repellendus soluta, eveniet laborum quod animi architecto accusantium sit harum? Ipsum debitis sit pariatur quaerat repellendus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis delectus placeat modi architecto repellendus officiis eveniet obcaecati, incidunt consectetur veritatis temporibus ratione? Id ipsum asperiores debitis alias tenetur quae sapiente."
-      />
+      {messages.map((m, index) => (
+        <Message
+          key={m.id}
+          message={m}
+          isSame={index > 0 && m.senderId === messages[index - 1].senderId}
+        />
+      ))}
     </div>
   );
 };

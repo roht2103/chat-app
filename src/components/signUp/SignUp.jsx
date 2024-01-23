@@ -1,5 +1,5 @@
 import "./SignUp.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import signUpImg from "../../assets/signUp.svg";
 import avatar from "../../assets/avatar.svg";
 import eye from "../../assets/eye.svg";
@@ -8,15 +8,17 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, storage, db } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-import { useState } from "react";
+import { useState, CSSProperties } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import BeatLoader from "react-spinners/BeatLoader";
 const SignUpComponent = () => {
   const navigate = useNavigate();
   const [err, setErr] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const [showCnfPass, setShowCnfPass] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
   const clickHandeler = async (e) => {
     e.preventDefault();
 
@@ -28,6 +30,7 @@ const SignUpComponent = () => {
 
     if (password === cnfPassword) {
       if (password.length > 6 || cnfPassword.length > 6) {
+        setLoading(true);
         try {
           const res = await createUserWithEmailAndPassword(
             auth,
@@ -66,6 +69,20 @@ const SignUpComponent = () => {
                 });
                 await setDoc(doc(db, "userChats", res.user.uid), {});
                 console.log("Profile updated and data saved to Firestore");
+
+                navigate("/home");
+                setLoading(false);
+                toast.success("Welcome " + displayName + "!", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  color: "#b473d7",
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
               } catch (error) {
                 console.error(
                   "Error retrieving download URL or updating profile:",
@@ -73,19 +90,16 @@ const SignUpComponent = () => {
                 );
                 setErr(true);
               }
-
-              await setDoc(doc(db, "users", res.user.uid, {}));
             }
           );
         } catch (err) {
           setErr(true);
         }
-        navigate("/home");
       } else {
-        toast("Password length must greater than 6 Characters!");
+        toast("Password length must be greater than 6 Characters!");
       }
     } else {
-      toast("Confirm Password dosen't match Password!");
+      toast("Confirm Password doesn't match Password!");
     }
   };
   return (
@@ -146,7 +160,18 @@ const SignUpComponent = () => {
                 <img src={avatar} alt="avatar.svg" height="40px" />
                 <p>Add an Avatar</p>
               </label>
-              <input type="submit" id="submit-btn" value="Create Account" />
+              {isLoading ? (
+                <BeatLoader
+                  color="#b473d7"
+                  style={{
+                    alignSelf: "center",
+                    width: "fit-content",
+                    padding: "0.7rem 1rem",
+                  }}
+                />
+              ) : (
+                <input type="submit" id="submit-btn" value="Create Account" />
+              )}
               {err && (
                 <span style={{ textAlign: "center", color: "red" }}>
                   Something went Wrong...
@@ -161,10 +186,12 @@ const SignUpComponent = () => {
                   Sign In
                 </button>
               </p>
+              <Link className="link" to="/">
+                Go Back
+              </Link>
             </form>
           </div>
         </section>
-        <ToastContainer />
       </div>
     </>
   );
