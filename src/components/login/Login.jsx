@@ -41,6 +41,8 @@ const LoginComponent = () => {
           });
         } else {
           setErr(true);
+          toast.error(err);
+          setLoading(false);
         }
       }
     } else {
@@ -94,11 +96,11 @@ const LoginComponent = () => {
               ) : (
                 <input type="submit" id="submit-btn" value="Log In" />
               )}
-              {err && (
+              {/* {err && (
                 <span style={{ textAlign: "center", color: "red" }}>
                   Something went Wrong...
                 </span>
-              )}
+              )} */}
               <p>
                 Don't have an Account..?
                 <button

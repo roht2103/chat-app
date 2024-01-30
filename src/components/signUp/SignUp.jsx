@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import BeatLoader from "react-spinners/BeatLoader";
 const SignUpComponent = () => {
   const navigate = useNavigate();
-  const [err, setErr] = useState(false);
+  const [err, setErr] = useState(null); // Change the initial state to null
   const [showPass, setShowPass] = useState(false);
   const [showCnfPass, setShowCnfPass] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -48,7 +48,9 @@ const SignUpComponent = () => {
             },
             (error) => {
               console.error("Error uploading file:", error);
-              setErr(true);
+              setErr("Something went wrong during file upload.");
+              toast.error(err);
+              setLoading(false);
             },
             async () => {
               console.log("Upload completed successfully");
@@ -88,12 +90,23 @@ const SignUpComponent = () => {
                   "Error retrieving download URL or updating profile:",
                   error
                 );
-                setErr(true);
+                setErr("Something went wrong during profile update.");
+                toast.error(err);
+                setLoading(false);
               }
             }
           );
-        } catch (err) {
-          setErr(true);
+        } catch (error) {
+          // Check if the error is due to an existing account
+          if (error.code === "auth/email-already-in-use") {
+            setErr("An account with this email already exists.");
+            toast.error(err);
+          } else {
+            console.error("Error creating account:", error);
+            setErr("Something went wrong during account creation.");
+            toast.error(err);
+          }
+          setLoading(false);
         }
       } else {
         toast("Password length must be greater than 6 Characters!");
@@ -172,11 +185,9 @@ const SignUpComponent = () => {
               ) : (
                 <input type="submit" id="submit-btn" value="Create Account" />
               )}
-              {err && (
-                <span style={{ textAlign: "center", color: "red" }}>
-                  Something went Wrong...
-                </span>
-              )}
+              {/* {err && (
+                <span style={{ textAlign: "center", color: "red" }}>{err}</span>
+              )} */}
               <p>
                 Already have an Account..?
                 <button

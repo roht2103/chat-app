@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from "react";
 export const ChatUser = ({ profileUrl, name, lastMsg, onClick, time }) => {
   const { currentUser } = useContext(AuthContext);
   const [timeString, setTimeString] = useState("");
+
   useEffect(() => {
     const fetchTimestamp = async () => {
       if (time && time.seconds && time.nanoseconds) {
@@ -49,7 +50,7 @@ export const ChatUser = ({ profileUrl, name, lastMsg, onClick, time }) => {
 
     truncatedMsg = truncateText(lastMsg, 10);
   } else {
-    truncatedMsg = "📷 image";
+    truncatedMsg = "No messages"; // Display a default message when there are no messages
   }
 
   return (
@@ -59,7 +60,7 @@ export const ChatUser = ({ profileUrl, name, lastMsg, onClick, time }) => {
         <span>{name == currentUser.displayName ? name + " (Me)" : name}</span>
         <span style={{ display: "flex", justifyContent: "space-between" }}>
           <p>{truncatedMsg}</p>
-          <p>{timeString}</p>
+          <p>{lastMsg && timeString}</p>
         </span>
       </div>
     </div>
