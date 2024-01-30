@@ -6,7 +6,7 @@ import { ChatContext } from "../../context/ChatContext.jsx";
 import { db } from "../../firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 
-export const Chats = ({ setChatWindow, setShow, show }) => {
+export const Chats = ({ setChatWindow, setShow, show, setSettingWindow }) => {
   const [chats, setChats] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
@@ -38,6 +38,7 @@ export const Chats = ({ setChatWindow, setShow, show }) => {
                 handleSelect(chat[1].userInfo);
                 setChatWindow(true);
                 setShow(!show);
+                setSettingWindow(false);
               }}
               key={chat[1].userInfo.uid}
               profileUrl={chat[1].userInfo.photoURL}

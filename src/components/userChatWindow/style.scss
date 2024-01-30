@@ -227,7 +227,7 @@ input::placeholder {
   font-size: 1.7rem;
 }
 
-.chatInfo .back {
+.back {
   height: 30px;
   color: white;
   width: 30px;
@@ -239,7 +239,7 @@ input::placeholder {
   display: none;
 }
 
-.chatInfo .back:hover {
+.back:hover {
   background-color: #253248;
   transition: 0.2s;
 }
@@ -512,5 +512,24 @@ input::placeholder {
     font-size: 1.4rem;
     font-weight: bold;
     text-align: center;
+  }
+}
+.settingWindow {
+  background-color: #c1cada;
+  // border: 1px solid;
+  flex: 1;
+  padding: 1rem;
+
+  header {
+    display: flex;
+    align-items: center;
+    h1 {
+      font-size: 2.5rem;
+    }
+    .backSetting:hover {
+      transition: 0.5s;
+      background-color: #4e5e79;
+      border-radius: 5px;
+    }
   }
 }
