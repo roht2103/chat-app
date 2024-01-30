@@ -29,6 +29,7 @@ const LoginComponent = () => {
       } catch (err) {
         console.log(err.code);
         if (err.code === "auth/invalid-credential") {
+          setLoading(false);
           toast.error(err.code, {
             position: "top-right",
             autoClose: 5000,
@@ -39,10 +40,9 @@ const LoginComponent = () => {
             progress: undefined,
             theme: "light",
           });
-        } else {
           setErr(true);
-          toast.error(err);
-          setLoading(false);
+          // toast.error(err);
+        } else {
         }
       }
     } else {
