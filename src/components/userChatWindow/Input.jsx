@@ -4,6 +4,7 @@ import imgIcon from "../../assets/img.svg";
 import send from "../../assets/send.svg";
 import { useState, useContext } from "react";
 import { MdBackspace } from "react-icons/md";
+import Sentiment from "sentiment";
 import {
   Timestamp,
   arrayUnion,
@@ -16,8 +17,10 @@ import { ChatContext } from "../../context/ChatContext";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, getDoc } from "firebase/firestore";
 import { db, storage, auth } from "../../firebase";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Input = () => {
+  const sentiment = new Sentiment();
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
   const [imgPreview, setImgPreview] = useState(null);
@@ -99,27 +102,32 @@ export const Input = () => {
         }
       );
     } else {
-      await updateDoc(doc(db, "chats", data.chatId), {
-        messages: arrayUnion({
-          id: uuid(),
-          text,
-          senderId: currentUser.uid,
-          date: Timestamp.now(),
-        }),
-      });
+      const result = sentiment.analyze(text);
+      if (result.score < -3) {
+        toast.error("Offensive words detected!");
+      } else {
+        await updateDoc(doc(db, "chats", data.chatId), {
+          messages: arrayUnion({
+            id: uuid(),
+            text,
+            senderId: currentUser.uid,
+            date: Timestamp.now(),
+          }),
+        });
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+          [data.chatId + ".lastMessage"]: {
+            text,
+          },
+          [data.chatId + ".date"]: serverTimestamp(),
+        });
+        await updateDoc(doc(db, "userChats", data.user.uid), {
+          [data.chatId + ".lastMessage"]: {
+            text,
+          },
+          [data.chatId + ".date"]: serverTimestamp(),
+        });
+      }
     }
-    await updateDoc(doc(db, "userChats", currentUser.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
-    await updateDoc(doc(db, "userChats", data.user.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
     setImg(null);
     setText("");
     clearImage();
