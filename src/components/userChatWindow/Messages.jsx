@@ -23,7 +23,6 @@ export const Messages = () => {
         if (userDoc.exists()) {
           const userData = userDoc.data();
           setFocusMode(userData.isFocus);
-          console.log("Is Focus Mode:", userData.isFocus);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);

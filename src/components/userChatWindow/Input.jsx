@@ -14,8 +14,8 @@ import { v4 as uuid } from "uuid";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc } from "firebase/firestore";
-import { db, storage } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { db, storage, auth } from "../../firebase";
 
 export const Input = () => {
   const [text, setText] = useState("");
@@ -23,6 +23,26 @@ export const Input = () => {
   const [imgPreview, setImgPreview] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
+  const [isFocusMode, setFocusMode] = useState(false);
+
+  const fetchUserData = async () => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const userRef = doc(db, "users", userId);
+
+      try {
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setFocusMode(userData.isFocus);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+  };
+  fetchUserData();
 
   const handleImageChange = (e) => {
     const selectedImg = e.target.files[0];
@@ -122,9 +142,16 @@ export const Input = () => {
           </div>
         )}
         <input
+          disabled={isFocusMode}
           type="text"
           value={text}
-          placeholder={imgPreview ? "Caption (optional)" : "Type Something..."}
+          placeholder={
+            imgPreview
+              ? "Caption (optional)"
+              : isFocusMode
+              ? "You cant send messages as Focus mode is on"
+              : "Type Something..."
+          }
           onChange={(e) => setText(e.target.value)}
         />
         <div className="send">
@@ -132,6 +159,7 @@ export const Input = () => {
             <img src={imgIcon} alt="" />
           </label>
           <input
+            disabled={isFocusMode}
             id="file"
             type="file"
             onChange={(e) => handleImageChange(e)}
