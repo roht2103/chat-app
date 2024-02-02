@@ -8,9 +8,10 @@ import back from "../../assets/back.svg";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext.jsx";
-export const Chat = ({ setShow, show }) => {
+export const Chat = ({ setShow, messages, setMessages }) => {
   const { data } = useContext(ChatContext);
   const { currentUser } = useContext(AuthContext);
+
   return (
     <div
       className="chat"
@@ -58,7 +59,7 @@ export const Chat = ({ setShow, show }) => {
           <img className="ham" src={more} alt="more" />
         </div>
       </div>
-      <Messages />
+      <Messages messages={messages} setMessages={setMessages} />
       <Input />
     </div>
   );

@@ -2,7 +2,14 @@ import "./style.scss";
 import { Nav } from "./Nav.jsx";
 import { Search } from "./Search.jsx";
 import { Chats } from "./Chats.jsx";
-export const Sidebar = ({ setChatWindow, setShow, show, setSettingWindow }) => {
+export const Sidebar = ({
+  setChatWindow,
+  setShow,
+  show,
+  setSettingWindow,
+  messages,
+  setMessages,
+}) => {
   return (
     <section className={show ? "sidebar active" : "sidebar"}>
       <Nav setSettingWindow={setSettingWindow} setShow={setShow} />
@@ -12,6 +19,8 @@ export const Sidebar = ({ setChatWindow, setShow, show, setSettingWindow }) => {
         setShow={setShow}
         show={show}
         setSettingWindow={setSettingWindow}
+        messages={messages}
+        setMessages={setMessages}
       />
     </section>
   );

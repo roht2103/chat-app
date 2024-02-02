@@ -7,9 +7,8 @@ import { ChatContext } from "../../context/ChatContext.jsx";
 import { doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase.js";
 
-export const Messages = () => {
+export const Messages = ({ messages, setMessages }) => {
   const { data } = useContext(ChatContext);
-  const [messages, setMessages] = useState([]);
   const [isFocusMode, setFocusMode] = useState(false);
 
   const fetchUserData = async () => {

@@ -6,6 +6,7 @@ import { SettingWindow } from "./SettingWindow.jsx";
 import { useState } from "react";
 const HomeComponent = () => {
   const [show, setShow] = useState(false);
+  const [messages, setMessages] = useState([]);
 
   const [isChatWindow, setChatWindow] = useState(false);
   const [isSettingsWindow, setSettingWindow] = useState(false);
@@ -13,6 +14,8 @@ const HomeComponent = () => {
     <div className="container">
       <div className="window">
         <Sidebar
+          messages={messages}
+          setMessages={setMessages}
           show={show}
           setShow={setShow}
           setChatWindow={setChatWindow}
@@ -25,7 +28,12 @@ const HomeComponent = () => {
             show={show}
           />
         ) : isChatWindow ? (
-          <Chat setShow={setShow} show={show} />
+          <Chat
+            setShow={setShow}
+            show={show}
+            messages={messages}
+            setMessages={setMessages}
+          />
         ) : (
           <DefaultWindow setShow={setShow} show={show} />
         )}

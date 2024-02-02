@@ -2,10 +2,17 @@ import "./style.scss";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useState, useEffect } from "react";
 
-export const ChatUser = ({ profileUrl, name, lastMsg, onClick, time }) => {
+export const ChatUser = ({
+  profileUrl,
+  name,
+  onClick,
+  time,
+  messages,
+  setMessages,
+}) => {
   const { currentUser } = useContext(AuthContext);
   const [timeString, setTimeString] = useState("");
-
+  // console.log(messages[0].text);
   useEffect(() => {
     const fetchTimestamp = async () => {
       if (time && time.seconds && time.nanoseconds) {
@@ -38,6 +45,7 @@ export const ChatUser = ({ profileUrl, name, lastMsg, onClick, time }) => {
     fetchTimestamp();
   }, [time]);
 
+  let lastMsg = messages.length > 0 ? messages[messages.length - 1].text : "";
   let truncatedMsg;
   if (lastMsg) {
     const truncateText = (text, maxLength) => {
