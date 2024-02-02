@@ -5,7 +5,7 @@ import { Chats } from "./Chats.jsx";
 export const Sidebar = ({ setChatWindow, setShow, show, setSettingWindow }) => {
   return (
     <section className={show ? "sidebar active" : "sidebar"}>
-      <Nav setSettingWindow={setSettingWindow} />
+      <Nav setSettingWindow={setSettingWindow} setShow={setShow} />
       <Search />
       <Chats
         setChatWindow={setChatWindow}

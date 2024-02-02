@@ -7,19 +7,21 @@ import eyeclose from "../../assets/eye-close.svg";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, storage, db } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore";
-import { useState, CSSProperties } from "react";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BeatLoader from "react-spinners/BeatLoader";
+
 const SignUpComponent = () => {
   const navigate = useNavigate();
-  const [err, setErr] = useState(null); // Change the initial state to null
+  const [err, setErr] = useState(null);
   const [showPass, setShowPass] = useState(false);
   const [showCnfPass, setShowCnfPass] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const [isFocus, setIsFocus] = useState(false); // Initialize isFocus state
 
-  const clickHandeler = async (e) => {
+  const clickHandler = async (e) => {
     e.preventDefault();
 
     const displayName = e.target[0].value;
@@ -63,13 +65,18 @@ const SignUpComponent = () => {
                   photoURL: downloadURL,
                 });
 
-                await setDoc(doc(db, "users", res.user.uid), {
+                const userRef = doc(db, "users", res.user.uid);
+                await setDoc(userRef, {
                   uid: res.user.uid,
                   displayName,
                   email,
                   photoURL: downloadURL,
+                  isFocus: isFocus, // Set isFocus to the initial value
                 });
-                await setDoc(doc(db, "userChats", res.user.uid), {});
+
+                const userChatsRef = doc(db, "userChats", res.user.uid);
+                await setDoc(userChatsRef, {});
+
                 console.log("Profile updated and data saved to Firestore");
 
                 navigate("/home");
@@ -115,6 +122,7 @@ const SignUpComponent = () => {
       toast("Confirm Password doesn't match Password!");
     }
   };
+
   return (
     <>
       <div className="body">
@@ -124,7 +132,7 @@ const SignUpComponent = () => {
           </div>
           <div className="login-form">
             <h1>Get Started</h1>
-            <form onSubmit={clickHandeler}>
+            <form onSubmit={clickHandler}>
               <input
                 type="text"
                 id="displayName"
@@ -185,9 +193,9 @@ const SignUpComponent = () => {
               ) : (
                 <input type="submit" id="submit-btn" value="Create Account" />
               )}
-              {/* {err && (
+              {err && (
                 <span style={{ textAlign: "center", color: "red" }}>{err}</span>
-              )} */}
+              )}
               <p>
                 Already have an Account..?
                 <button
@@ -207,4 +215,5 @@ const SignUpComponent = () => {
     </>
   );
 };
+
 export const SignUp = SignUpComponent;

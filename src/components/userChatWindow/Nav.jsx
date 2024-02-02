@@ -5,7 +5,7 @@ import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
-export const Nav = ({ setSettingWindow }) => {
+export const Nav = ({ setSettingWindow, setShow }) => {
   const menus = ["setting", "log-out"];
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export const Nav = ({ setSettingWindow }) => {
   const goToMenuItem = (menu) => {
     setOpen(false);
     menu == "log-out" ? handleLogout() : true;
-    menu == "setting" ? setSettingWindow(true) : true;
+    menu == "setting" ? (setSettingWindow(true), setShow(false)) : true;
   };
   const handleLogout = async () => {
     try {
