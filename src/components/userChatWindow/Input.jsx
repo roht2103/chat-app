@@ -2,7 +2,7 @@ import "./style.scss";
 import cross from "../../assets/cross.svg";
 import imgIcon from "../../assets/img.svg";
 import send from "../../assets/send.svg";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { MdBackspace } from "react-icons/md";
 import Sentiment from "sentiment";
 import {
@@ -28,24 +28,27 @@ export const Input = () => {
   const { data } = useContext(ChatContext);
   const [isFocusMode, setFocusMode] = useState(false);
 
-  const fetchUserData = async () => {
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      const userId = currentUser.uid;
-      const userRef = doc(db, "users", userId);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        const userId = currentUser.uid;
+        const userRef = doc(db, "users", userId);
 
-      try {
-        const userDoc = await getDoc(userRef);
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          setFocusMode(userData.isFocus);
+        try {
+          const userDoc = await getDoc(userRef);
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            setFocusMode(userData.isFocus);
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
         }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
       }
-    }
-  };
-  fetchUserData();
+    };
+
+    fetchUserData();
+  }, []);
 
   const handleImageChange = (e) => {
     const selectedImg = e.target.files[0];
@@ -185,6 +188,7 @@ export const Input = () => {
           />
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };
