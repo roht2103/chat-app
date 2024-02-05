@@ -8,9 +8,10 @@ import { doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase.js";
 import { v4 as uuid } from "uuid";
 
-export const Messages = ({ messages, setMessages }) => {
+export const Messages = () => {
   const { data } = useContext(ChatContext);
   const [isFocusMode, setFocusMode] = useState(false);
+  const [messages, setMessages] = useState([]);
 
   const fetchUserData = async () => {
     const currentUser = auth.currentUser;
@@ -47,13 +48,15 @@ export const Messages = ({ messages, setMessages }) => {
 
   return (
     <div className="messages">
-      {messages.map((m, index) => (
-        <Message
-          key={`${m.id}_${m.senderId || uuid()}_${index}`} // Combine message ID with sender ID or generate a new one
-          message={m}
-          isSame={index > 0 && m.senderId === messages[index - 1].senderId}
-        />
-      ))}
+      {!isFocusMode &&
+        messages &&
+        messages.map((m, index) => (
+          <Message
+            key={`${m.id}_${m.senderId || uuid()}_${index}`} // Combine message ID with sender ID or generate a new one
+            message={m}
+            isSame={index > 0 && m.senderId === messages[index - 1].senderId}
+          />
+        ))}
     </div>
   );
 };

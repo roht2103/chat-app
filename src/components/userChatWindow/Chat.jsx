@@ -59,7 +59,7 @@ export const Chat = ({ setShow, messages, setMessages }) => {
           <img className="ham" src={more} alt="more" />
         </div>
       </div>
-      <Messages messages={messages} setMessages={setMessages} />
+      <Messages />
       <Input />
     </div>
   );

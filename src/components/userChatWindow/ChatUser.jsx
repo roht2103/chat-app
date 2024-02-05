@@ -2,15 +2,7 @@ import "./style.scss";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useState, useEffect } from "react";
 
-export const ChatUser = ({
-  profileUrl,
-  name,
-  onClick,
-  time,
-  messages,
-  setMessages,
-  lastMsg,
-}) => {
+export const ChatUser = ({ profileUrl, name, onClick, time, lastMsg }) => {
   const { currentUser } = useContext(AuthContext);
   const [timeString, setTimeString] = useState("");
   // console.log(messages[0].text);
@@ -68,8 +60,8 @@ export const ChatUser = ({
       <div className="userChatInfo" style={{ width: "100%" }}>
         <span>{name == currentUser.displayName ? name + " (Me)" : name}</span>
         <span style={{ display: "flex", justifyContent: "space-between" }}>
-          <p>{messages.length > 0 && truncatedMsg}</p>
-          <p>{messages.length > 0 && lastMsg && timeString}</p>
+          <p>{truncatedMsg}</p>
+          <p>{lastMsg && timeString}</p>
         </span>
       </div>
     </div>
