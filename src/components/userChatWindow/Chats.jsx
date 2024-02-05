@@ -46,6 +46,9 @@ export const Chats = ({
                 setChatWindow(true);
                 setShow(!show);
                 setSettingWindow(false);
+                {
+                  console.log(chat[1].userInfo.lastMessage.text);
+                }
               }}
               messages={messages}
               setMessages={setMessages}
@@ -53,6 +56,7 @@ export const Chats = ({
               profileUrl={chat[1].userInfo.photoURL}
               name={chat[1].userInfo.displayName}
               time={chat[1].date}
+              lastMsg={chat[1].lastMessage?.text}
             />
           ))) ||
         null}

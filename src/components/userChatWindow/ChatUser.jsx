@@ -9,6 +9,7 @@ export const ChatUser = ({
   time,
   messages,
   setMessages,
+  lastMsg,
 }) => {
   const { currentUser } = useContext(AuthContext);
   const [timeString, setTimeString] = useState("");
@@ -45,7 +46,7 @@ export const ChatUser = ({
     fetchTimestamp();
   }, [time]);
 
-  let lastMsg = messages.length > 0 ? messages[messages.length - 1].text : "";
+  // let lastMsg = messages.length > 0 ? messages[messages.length - 1].text : "";
   let truncatedMsg;
   if (lastMsg) {
     const truncateText = (text, maxLength) => {
@@ -67,8 +68,8 @@ export const ChatUser = ({
       <div className="userChatInfo" style={{ width: "100%" }}>
         <span>{name == currentUser.displayName ? name + " (Me)" : name}</span>
         <span style={{ display: "flex", justifyContent: "space-between" }}>
-          <p>{truncatedMsg}</p>
-          <p>{lastMsg && timeString}</p>
+          <p>{messages.length > 0 && truncatedMsg}</p>
+          <p>{messages.length > 0 && lastMsg && timeString}</p>
         </span>
       </div>
     </div>
