@@ -569,3 +569,17 @@ input::placeholder {
     }
   }
 }
+.user-container {
+  position: relative;
+}
+
+.focus-indicator {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: -7px;
+  right: 53px;
+  // background-color: red; /* Adjust background color as needed */
+  padding: 5px;
+  border-radius: 50%;
+}

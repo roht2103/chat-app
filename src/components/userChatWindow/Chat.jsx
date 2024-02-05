@@ -8,7 +8,7 @@ import back from "../../assets/back.svg";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext.jsx";
-export const Chat = ({ setShow, messages, setMessages }) => {
+export const Chat = ({ setShow, isFocusMode }) => {
   const { data } = useContext(ChatContext);
   const { currentUser } = useContext(AuthContext);
 
@@ -59,7 +59,7 @@ export const Chat = ({ setShow, messages, setMessages }) => {
           <img className="ham" src={more} alt="more" />
         </div>
       </div>
-      <Messages />
+      <Messages isFocusMode={isFocusMode} />
       <Input />
     </div>
   );

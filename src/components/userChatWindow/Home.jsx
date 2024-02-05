@@ -4,11 +4,32 @@ import { DefaultWindow } from "./DefaultWindow.jsx";
 import { Sidebar } from "./Sidebar.jsx";
 import { SettingWindow } from "./SettingWindow.jsx";
 import { useState } from "react";
+import { db, auth } from "../../firebase.js";
+import { doc, getDoc } from "firebase/firestore";
+
 const HomeComponent = () => {
   const [show, setShow] = useState(false);
-
+  const [isFocusMode, setFocusMode] = useState(false);
   const [isChatWindow, setChatWindow] = useState(false);
   const [isSettingsWindow, setSettingWindow] = useState(false);
+  const fetchUserData = async () => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const userRef = doc(db, "users", userId);
+
+      try {
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setFocusMode(userData.isFocus);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+  };
+  fetchUserData();
   return (
     <div className="container">
       <div className="window">
@@ -17,6 +38,7 @@ const HomeComponent = () => {
           setShow={setShow}
           setChatWindow={setChatWindow}
           setSettingWindow={setSettingWindow}
+          isFocusMode={isFocusMode}
         />
         {isSettingsWindow ? (
           <SettingWindow
@@ -25,7 +47,7 @@ const HomeComponent = () => {
             show={show}
           />
         ) : isChatWindow ? (
-          <Chat setShow={setShow} show={show} />
+          <Chat setShow={setShow} show={show} isFocusMode={isFocusMode} />
         ) : (
           <DefaultWindow setShow={setShow} show={show} />
         )}

@@ -1,11 +1,12 @@
 import { useContext, useRef, useState } from "react";
 import more from "../../assets/more.svg";
+import focus from "../../assets/focus.svg";
 import "./style.scss";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
-export const Nav = ({ setSettingWindow, setShow }) => {
+export const Nav = ({ setSettingWindow, setShow, isFocusMode }) => {
   const menus = ["setting", "log-out"];
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -39,10 +40,23 @@ export const Nav = ({ setSettingWindow, setShow }) => {
     <div className="chat-nav">
       <p className="logo">ZenChat</p>
       <span>
-        <div>
-          <img className="userImg" src={currentUser.photoURL} alt="user-img" />
-          <p className="userName">{currentUser.displayName}</p>
+        <div className="user-container">
+          <div className="user-info">
+            <img
+              className="userImg"
+              src={currentUser.photoURL}
+              alt="user-img"
+            />
+            <p className="userName">{currentUser.displayName}</p>
+          </div>
+
+          {isFocusMode && (
+            <div className="focus-indicator">
+              <img src={focus} alt="focus.svg" />
+            </div>
+          )}
         </div>
+
         <div className="menu-ham">
           <img
             ref={hamRef}
