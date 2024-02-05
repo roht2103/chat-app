@@ -137,7 +137,10 @@ export const Input = () => {
   };
 
   return (
-    <div className="input">
+    <div
+      className="input"
+      title={isFocusMode && "You cant send messages as Focus mode is on"}
+    >
       <form onSubmit={(e) => sendMessage(e)}>
         {imgPreview && (
           <div className="image-preview">

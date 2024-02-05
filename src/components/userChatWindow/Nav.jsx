@@ -52,7 +52,7 @@ export const Nav = ({ setSettingWindow, setShow, isFocusMode }) => {
 
           {isFocusMode && (
             <div className="focus-indicator">
-              <img src={focus} alt="focus.svg" />
+              <img src={focus} alt="focus.svg" title="Focus mode is on" />
             </div>
           )}
         </div>
