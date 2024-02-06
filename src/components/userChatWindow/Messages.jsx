@@ -58,11 +58,11 @@ export const Messages = ({ isFocusMode }) => {
           />
         ))}
       {isFocusMode && (
-        <h1>
+        <p>
           "Focus mode is currently active. During this time, you won't be able
           to send, receive, or view messages to maintain a distraction-free
           experience."
-        </h1>
+        </p>
       )}
     </div>
   );
