@@ -262,6 +262,13 @@ input::placeholder {
   overflow-y: scroll;
   scroll-behavior: smooth;
   padding: 1rem 0rem;
+  h1 {
+    text-align: center;
+    height: 100%;
+    margin: 0rem 1rem;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .message {
@@ -577,8 +584,8 @@ input::placeholder {
   position: absolute;
   height: 30px;
   width: 30px;
-  top: -7px;
-  right: 53px;
+  top: -5px;
+  left: 24px;
   // background-color: red; /* Adjust background color as needed */
   padding: 5px;
   border-radius: 50%;

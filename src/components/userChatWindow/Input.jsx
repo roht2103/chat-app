@@ -108,6 +108,7 @@ export const Input = () => {
       const result = sentiment.analyze(text);
       if (result.score < -3) {
         toast.error("Offensive words detected!");
+        console.log(result.score);
       } else {
         await updateDoc(doc(db, "chats", data.chatId), {
           messages: arrayUnion({

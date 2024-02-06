@@ -12,6 +12,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BeatLoader from "react-spinners/BeatLoader";
+import { IoCloudDoneOutline } from "react-icons/io5";
 
 const SignUpComponent = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const SignUpComponent = () => {
   const [showCnfPass, setShowCnfPass] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [isFocus, setIsFocus] = useState(false); // Initialize isFocus state
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const clickHandler = async (e) => {
     e.preventDefault();
@@ -176,10 +178,13 @@ const SignUpComponent = () => {
                 id="avatar"
                 style={{ display: "none" }}
                 required
+                onChange={(e) => setSelectedFile(e.target.files[0])}
               />
               <label htmlFor="avatar" className="avatar">
                 <img src={avatar} alt="avatar.svg" height="40px" />
-                <p>Add an Avatar</p>
+                <p>{selectedFile ? "Avatar Added" : "Add an Avatar"}</p>
+                <img src="" alt="" />
+                {selectedFile && <IoCloudDoneOutline size="30px" />}
               </label>
               {isLoading ? (
                 <BeatLoader

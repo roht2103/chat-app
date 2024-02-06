@@ -57,6 +57,13 @@ export const Messages = ({ isFocusMode }) => {
             isSame={index > 0 && m.senderId === messages[index - 1].senderId}
           />
         ))}
+      {isFocusMode && (
+        <h1>
+          "Focus mode is currently active. During this time, you won't be able
+          to send, receive, or view messages to maintain a distraction-free
+          experience."
+        </h1>
+      )}
     </div>
   );
 };

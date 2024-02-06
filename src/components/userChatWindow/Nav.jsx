@@ -42,19 +42,20 @@ export const Nav = ({ setSettingWindow, setShow, isFocusMode }) => {
       <span>
         <div className="user-container">
           <div className="user-info">
-            <img
-              className="userImg"
-              src={currentUser.photoURL}
-              alt="user-img"
-            />
+            <span>
+              <img
+                className="userImg"
+                src={currentUser.photoURL}
+                alt="user-img"
+              />
+              {isFocusMode && (
+                <div className="focus-indicator">
+                  <img src={focus} alt="focus.svg" title="Focus mode is on" />
+                </div>
+              )}
+            </span>
             <p className="userName">{currentUser.displayName}</p>
           </div>
-
-          {isFocusMode && (
-            <div className="focus-indicator">
-              <img src={focus} alt="focus.svg" title="Focus mode is on" />
-            </div>
-          )}
         </div>
 
         <div className="menu-ham">
