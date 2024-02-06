@@ -4,13 +4,36 @@ import { Messages } from "./Messages.jsx";
 import { Input } from "./Input.jsx";
 import videoIcon from "../../assets/video-solid.svg";
 import more from "../../assets/more.svg";
-import back from "../../assets/back.svg";
-import { useContext, useState } from "react";
+import focus from "../../assets/focus.svg";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext.jsx";
+import { db, auth } from "../../firebase.js";
+import { doc, getDoc } from "firebase/firestore";
 export const Chat = ({ setShow, isFocusMode }) => {
   const { data } = useContext(ChatContext);
   const { currentUser } = useContext(AuthContext);
+  const [userFocusMode, setUserFocusMode] = useState(false);
+  const [userName, setUserName] = useState("");
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (data && data.user) {
+        try {
+          const userRef = doc(db, "users", data.user.uid);
+          const userDoc = await getDoc(userRef);
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            setUserFocusMode(userData.isFocus);
+            setUserName(userData.displayName);
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [data]);
 
   return (
     <div
@@ -47,7 +70,17 @@ export const Chat = ({ setShow, isFocusMode }) => {
             }}
             className="back"
           />
-          <img className="userImg" src={data.user?.photoURL} alt="userImg" />
+          <span className="userContainer">
+            <img className="userImg" src={data.user?.photoURL} alt="userImg" />
+            {userFocusMode && (
+              <img
+                className="focusIcon"
+                src={focus}
+                alt="focus.svg"
+                title="Focus mode is on"
+              />
+            )}
+          </span>
           <span>
             {data.user?.displayName == currentUser.displayName
               ? currentUser.displayName + " (Me)"
@@ -59,7 +92,11 @@ export const Chat = ({ setShow, isFocusMode }) => {
           <img className="ham" src={more} alt="more" />
         </div>
       </div>
-      <Messages isFocusMode={isFocusMode} />
+      <Messages
+        isFocusMode={isFocusMode}
+        userFocusMode={userFocusMode}
+        userName={userName}
+      />
       <Input />
     </div>
   );

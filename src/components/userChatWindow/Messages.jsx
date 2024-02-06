@@ -8,7 +8,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase.js";
 import { v4 as uuid } from "uuid";
 
-export const Messages = ({ isFocusMode }) => {
+export const Messages = ({ isFocusMode, userFocusMode, userName }) => {
   const { data } = useContext(ChatContext);
   // const [isFocusMode, setFocusMode] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -58,10 +58,15 @@ export const Messages = ({ isFocusMode }) => {
           />
         ))}
       {isFocusMode && (
-        <p>
+        <p className="ChatfocusIndicator">
           "Focus mode is currently active. During this time, you won't be able
           to send, receive, or view messages to maintain a distraction-free
           experience."
+        </p>
+      )}
+      {userFocusMode && (
+        <p className="ChatfocusIndicator">
+          "{userName} is currently in focus mode and cannot receive messages."
         </p>
       )}
     </div>
