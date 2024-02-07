@@ -31,6 +31,10 @@ const SignUpComponent = () => {
     const password = e.target[2].value;
     const cnfPassword = e.target[3].value;
     const file = e.target[4].files[0];
+    if (!selectedFile) {
+      toast.warn("Please select an avatar file.");
+      return; // Exit function early
+    }
 
     if (password === cnfPassword) {
       if (password.length > 6 || cnfPassword.length > 6) {
@@ -177,7 +181,6 @@ const SignUpComponent = () => {
                 type="file"
                 id="avatar"
                 style={{ display: "none" }}
-                required
                 onChange={(e) => setSelectedFile(e.target.files[0])}
               />
               <label htmlFor="avatar" className="avatar">
