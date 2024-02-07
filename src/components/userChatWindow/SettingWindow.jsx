@@ -4,7 +4,12 @@ import { useState, useEffect } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 
-export const SettingWindow = ({ setShow, setSettingWindow }) => {
+export const SettingWindow = ({
+  setShow,
+  setSettingWindow,
+  isChangeAvatarWindow,
+  setChangeAvatarWindow,
+}) => {
   const [isFocusMode, setFocusMode] = useState(true);
 
   useEffect(() => {
@@ -66,6 +71,15 @@ export const SettingWindow = ({ setShow, setSettingWindow }) => {
         <h1>Settings</h1>
       </header>
       <div className="settings">
+        <div
+          className="setting"
+          style={{ cursor: "pointer" }}
+          onClick={() => setChangeAvatarWindow(!isChangeAvatarWindow)}
+        >
+          <span>
+            <h3>Change Avatar</h3>
+          </span>
+        </div>
         <div className="setting">
           <span>
             <h3>Focus mode</h3>

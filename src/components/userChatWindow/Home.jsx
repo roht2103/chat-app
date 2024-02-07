@@ -6,12 +6,14 @@ import { SettingWindow } from "./SettingWindow.jsx";
 import { useState } from "react";
 import { db, auth } from "../../firebase.js";
 import { doc, getDoc } from "firebase/firestore";
+import { ChangeAvatarWindow } from "./ChangeAvatarWindow.jsx";
 
 const HomeComponent = () => {
   const [show, setShow] = useState(false);
   const [isFocusMode, setFocusMode] = useState(false);
   const [isChatWindow, setChatWindow] = useState(false);
   const [isSettingsWindow, setSettingWindow] = useState(false);
+  const [isChangeAvatarWindow, setChangeAvatarWindow] = useState(false);
   const fetchUserData = async () => {
     const currentUser = auth.currentUser;
     if (currentUser) {
@@ -45,11 +47,19 @@ const HomeComponent = () => {
             setSettingWindow={setSettingWindow}
             setShow={setShow}
             show={show}
+            isChangeAvatarWindow={isChangeAvatarWindow}
+            setChangeAvatarWindow={setChangeAvatarWindow}
           />
         ) : isChatWindow ? (
           <Chat setShow={setShow} show={show} isFocusMode={isFocusMode} />
         ) : (
           <DefaultWindow setShow={setShow} show={show} />
+        )}
+        {isChangeAvatarWindow && (
+          <ChangeAvatarWindow
+            isChangeAvatarWindow={isChangeAvatarWindow}
+            setChangeAvatarWindow={setChangeAvatarWindow}
+          />
         )}
       </div>
     </div>
