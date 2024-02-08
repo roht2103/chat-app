@@ -7,6 +7,7 @@ import { useState } from "react";
 import { db, auth } from "../../firebase.js";
 import { doc, getDoc } from "firebase/firestore";
 import { ChangeAvatarWindow } from "./ChangeAvatarWindow.jsx";
+import { ParentalControlWindow } from "./ParentalControlWindow.jsx";
 
 const HomeComponent = () => {
   const [show, setShow] = useState(false);
@@ -14,6 +15,7 @@ const HomeComponent = () => {
   const [isChatWindow, setChatWindow] = useState(false);
   const [isSettingsWindow, setSettingWindow] = useState(false);
   const [isChangeAvatarWindow, setChangeAvatarWindow] = useState(false);
+  const [isParentalControlWindow, setParentalControlWindow] = useState(false);
   const fetchUserData = async () => {
     const currentUser = auth.currentUser;
     if (currentUser) {
@@ -49,6 +51,8 @@ const HomeComponent = () => {
             show={show}
             isChangeAvatarWindow={isChangeAvatarWindow}
             setChangeAvatarWindow={setChangeAvatarWindow}
+            isParentalControlWindow={isParentalControlWindow}
+            setParentalControlWindow={setParentalControlWindow}
           />
         ) : isChatWindow ? (
           <Chat setShow={setShow} show={show} isFocusMode={isFocusMode} />
@@ -59,6 +63,12 @@ const HomeComponent = () => {
           <ChangeAvatarWindow
             isChangeAvatarWindow={isChangeAvatarWindow}
             setChangeAvatarWindow={setChangeAvatarWindow}
+          />
+        )}
+        {isParentalControlWindow && (
+          <ParentalControlWindow
+            isParentalControlWindow={isParentalControlWindow}
+            setParentalControlWindow={setParentalControlWindow}
           />
         )}
       </div>

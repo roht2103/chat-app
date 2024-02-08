@@ -9,6 +9,8 @@ export const SettingWindow = ({
   setSettingWindow,
   isChangeAvatarWindow,
   setChangeAvatarWindow,
+  isParentalControlWindow,
+  setParentalControlWindow,
 }) => {
   const [isFocusMode, setFocusMode] = useState(true);
 
@@ -88,6 +90,21 @@ export const SettingWindow = ({
           <p>
             By turning on the focus mode, you will not receive any messages from
             your friends.
+          </p>
+        </div>
+        <div
+          className="setting"
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            setParentalControlWindow(!isParentalControlWindow);
+          }}
+        >
+          <span>
+            <h3>Parental Controls</h3>
+          </span>
+          <p>
+            Set limits on chatting. After the limit is reached, chatting will be
+            disabled. Accessible only by parents with a password.
           </p>
         </div>
       </div>

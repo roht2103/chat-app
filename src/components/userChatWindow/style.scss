@@ -716,3 +716,28 @@ input::placeholder {
     }
   }
 }
+.parentalControlWindow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%, -50%);
+  background-color: #d4d6e3;
+  height: fit-content;
+  width: 50%;
+  border-radius: 0.5rem;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 270px;
+  span {
+    h1 {
+      color: #253248;
+    }
+    .cross {
+      height: 30px;
+      cursor: pointer;
+    }
+  }
+}
