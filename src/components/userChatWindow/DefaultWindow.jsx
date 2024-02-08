@@ -11,7 +11,7 @@ export const DefaultWindow = ({ setShow, show }) => {
         }
       }}
     >
-      <img src={icon} height="10%" alt="" />
+      <img src={icon} style={{ height: "10%" }} alt="" />
       <h1>ZenChat</h1>
       <p>Send and receive messages. Get started now!</p>
       <p

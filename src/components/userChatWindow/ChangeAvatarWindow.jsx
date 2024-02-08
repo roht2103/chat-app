@@ -81,7 +81,7 @@ export const ChangeAvatarWindow = ({
           justifyContent: "space-between",
         }}
       >
-        <h1>Change Avatar</h1>
+        <h1 className="text-3xl font-bold">Change Avatar</h1>
         <img
           src={cross}
           alt="cross"
