@@ -1,24 +1,102 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import cross from "../../assets/cross.svg";
 import crossWhite from "../../assets/cross-white.svg";
 import eye from "../../assets/eye.svg";
 import eyeClose from "../../assets/eye-close.svg";
 import { Switch } from "antd";
+import { auth, db } from "../../firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const ParentalControlWindow = ({ setParentalControlWindow }) => {
   const [isLimits, setLimits] = useState(false);
   const [authanticate, setAuthenticate] = useState(false);
   const [isNewToPControls, setNewToPControls] = useState(true);
   const [typePass, setTypePass] = useState(true);
   const [pass, setPass] = useState("");
+  const [isParentKey, setParentKey] = useState("");
+
   const handleSwitchChange = () => {
     setAuthenticate(true);
   };
-  const handleSubmit = (e) => {
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        const userId = currentUser.uid;
+        const userRef = doc(db, "users", userId);
+
+        try {
+          const userDoc = await getDoc(userRef);
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            setLimits(userData.isLimits || false);
+            setNewToPControls(userData.isNewToPControls || true);
+            setParentKey(userData.parentKey || "");
+            console.log("is limits: ", userData.isLimits);
+            console.log("is new: ", userData.isNewToPControls);
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setAuthenticate(false);
-    setLimits(!isLimits);
-    setNewToPControls(false);
+
+    // Validate the password
+    if (!isParentKey) {
+      // If parent key is not set, validate the new key
+      if (!isStrongPassword(pass)) {
+        toast.error(
+          "Password must contain at least 8 characters, including uppercase, lowercase, numbers, and special characters"
+        );
+        return;
+      }
+      setAuthenticate(false);
+      setParentKey(pass);
+    } else {
+      // If parent key is set, validate the entered key
+      if (pass !== isParentKey) {
+        toast.error("Entered password is incorrect");
+        return;
+      }
+      setAuthenticate(false);
+      setLimits(!isLimits);
+      setNewToPControls(false);
+    }
+
+    // Update Firestore with the new values
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const userRef = doc(db, "users", userId);
+
+      try {
+        await updateDoc(userRef, {
+          isLimits: !isLimits,
+          isNewToPControls: false,
+          parentKey: pass,
+        });
+      } catch (error) {
+        console.error("Error updating Firestore:", error);
+      }
+    }
   };
+
+  // Password strength validation using regular expression
+  const isStrongPassword = (password) => {
+    const strongPasswordPattern =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return strongPasswordPattern.test(password);
+  };
+
   return (
     <div className="parentalControlWindow min-h-80">
       <span
@@ -59,14 +137,18 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
                 alt=""
               />
               <label className="mt-2" htmlFor="pass">
-                {isNewToPControls
+                {isNewToPControls && !isParentKey
                   ? "Create a Security Key:"
                   : "Enter Security Key:"}
               </label>
               <span className="bg-white rounded-md p-1 flex align-center justify-between ">
                 <input
                   onChange={(e) => setPass(e.target.value)}
-                  className="outline-none border-0 rounded-md text-gray-600 p-2 text-2xl"
+                  className={`outline-none border-0 rounded-md text-gray-600 p-2 text-2xl ${
+                    !isStrongPassword(pass) && pass !== ""
+                      ? "border-red-500"
+                      : ""
+                  }`}
                   type={typePass ? "password" : "text"}
                   id="pass"
                   required

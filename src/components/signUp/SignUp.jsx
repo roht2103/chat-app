@@ -77,7 +77,10 @@ const SignUpComponent = () => {
                   displayName,
                   email,
                   photoURL: downloadURL,
-                  isFocus: isFocus, // Set isFocus to the initial value
+                  isFocus: isFocus,
+                  isNewToPControls: true,
+                  isLimits: false,
+                  parentKey: "",
                 });
 
                 const userChatsRef = doc(db, "userChats", res.user.uid);
