@@ -63,10 +63,10 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
                   ? "Create a Security Key:"
                   : "Enter Security Key:"}
               </label>
-              <span className="bg-white flex align-center rounded-md">
+              <span className="bg-white rounded-md p-1 flex align-center justify-between ">
                 <input
                   onChange={(e) => setPass(e.target.value)}
-                  className="outline-none rounded-md text-gray-600 p-2"
+                  className="outline-none border-0 rounded-md text-gray-600 p-2 text-2xl"
                   type={typePass ? "password" : "text"}
                   id="pass"
                   required
@@ -79,7 +79,7 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
                 />
               </span>
               <input
-                className="cursor-pointer w-30 text-[#b473d7] self-center"
+                className="cursor-pointer w-auto rounded-md border-0 text-xl self-center p-2 text-center text-[#b473d7]"
                 type="submit"
                 value={
                   isNewToPControls
