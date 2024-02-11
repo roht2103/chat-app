@@ -126,7 +126,7 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
             onSubmit={(e) => handleSubmit(e)}
             className="pt-5 text-2xl text-white-700 absolute inset-0 flex flex-col items-center justify-center"
           >
-            <span className="bg-[#253248] p-4 rounded-lg flex flex-col gap-2">
+            <span className="bg-[#253248] p-4 rounded-lg flex flex-col gap-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
               <img
                 onClick={() => setAuthenticate(false)}
                 src={crossWhite}
