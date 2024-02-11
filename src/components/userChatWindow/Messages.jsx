@@ -9,6 +9,7 @@ import { db, auth } from "../../firebase.js";
 import { v4 as uuid } from "uuid";
 import chattingBoy from "../../assets/chatting-boy.json";
 import focusAnimation from "../../assets/focusAnimation.json";
+import focus from "../../assets/focus.svg";
 import Lottie from "lottie-react";
 
 export const Messages = ({ isFocusMode, userFocusMode, userName }) => {
@@ -68,15 +69,15 @@ export const Messages = ({ isFocusMode, userFocusMode, userName }) => {
           />
         ))}
       {isFocusMode && (
-        <div className=" w-full">
-          <div className="w-72 h-fit flex align-middle justify-center m-auto ">
-            <Lottie loop={true} animationData={focusAnimation} />
+        <div className=" w-full h-full flex items-center">
+          <div className="flex flex-col items-center">
+            <img className="w-44" src={focus} alt="" />
+            <p className="w-fit self-center ChatfocusIndicator">
+              "Focus mode is currently active. During this time, you won't be
+              able to send, receive, or view messages to maintain a
+              distraction-free experience."
+            </p>
           </div>
-          <p className="w-fit self-center ChatfocusIndicator">
-            "Focus mode is currently active. During this time, you won't be able
-            to send, receive, or view messages to maintain a distraction-free
-            experience."
-          </p>
         </div>
       )}
       {userFocusMode && (
