@@ -456,6 +456,7 @@ input::placeholder {
   }
   .container .window .sidebar {
     // display: none;
+    z-index: 10;
     transition: 1s;
     position: absolute;
     transition: all 0.5s;
