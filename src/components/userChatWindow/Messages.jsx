@@ -7,6 +7,9 @@ import { ChatContext } from "../../context/ChatContext.jsx";
 import { doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase.js";
 import { v4 as uuid } from "uuid";
+import chattingBoy from "../../assets/chatting-boy.json";
+import focusAnimation from "../../assets/focusAnimation.json";
+import Lottie from "lottie-react";
 
 export const Messages = ({ isFocusMode, userFocusMode, userName }) => {
   const { data } = useContext(ChatContext);
@@ -48,8 +51,15 @@ export const Messages = ({ isFocusMode, userFocusMode, userName }) => {
 
   return (
     <div className="messages">
+      {messages && !isFocusMode && messages.length == 0 && (
+        <div className="h-full flex align-center">
+          <div className="w-72 m-auto">
+            <Lottie loop={true} animationData={chattingBoy} />
+          </div>
+        </div>
+      )}
       {!isFocusMode &&
-        messages &&
+        messages.length > 0 &&
         messages.map((m, index) => (
           <Message
             key={`${m.id}_${m.senderId || uuid()}_${index}`} // Combine message ID with sender ID or generate a new one
@@ -58,11 +68,16 @@ export const Messages = ({ isFocusMode, userFocusMode, userName }) => {
           />
         ))}
       {isFocusMode && (
-        <p className="ChatfocusIndicator">
-          "Focus mode is currently active. During this time, you won't be able
-          to send, receive, or view messages to maintain a distraction-free
-          experience."
-        </p>
+        <div className=" w-full">
+          <div className="w-72 h-fit flex align-middle justify-center m-auto ">
+            <Lottie loop={true} animationData={focusAnimation} />
+          </div>
+          <p className="w-fit self-center ChatfocusIndicator">
+            "Focus mode is currently active. During this time, you won't be able
+            to send, receive, or view messages to maintain a distraction-free
+            experience."
+          </p>
+        </div>
       )}
       {userFocusMode && (
         <p className="ChatfocusIndicator">
