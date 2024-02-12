@@ -134,7 +134,7 @@ const SignUpComponent = () => {
 
   return (
     <>
-      <div className="body">
+      <div className="cont">
         <section>
           <div>
             <img src={signUpImg} alt="signUp.svg" />
