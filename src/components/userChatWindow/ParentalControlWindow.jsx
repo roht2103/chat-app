@@ -16,6 +16,9 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
   const [typePass, setTypePass] = useState(true);
   const [pass, setPass] = useState("");
   const [isParentKey, setParentKey] = useState("");
+  const [limitTime, setLimitTime] = useState("");
+  const [isTimeSet, setIsTimeSet] = useState(false);
+  const [showSetLimit, setShowSetLimit] = useState(false);
 
   const handleSwitchChange = () => {
     setAuthenticate(true);
@@ -35,8 +38,8 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
             setLimits(userData.isLimits || false);
             setNewToPControls(userData.isNewToPControls || true);
             setParentKey(userData.parentKey || "");
-            console.log("is limits: ", userData.isLimits);
-            console.log("is new: ", userData.isNewToPControls);
+            setIsTimeSet(userData.isTimeSet || false);
+            setLimitTime(userData.limitTime || 0);
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
@@ -70,6 +73,7 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
       setAuthenticate(false);
       setLimits(!isLimits);
       setNewToPControls(false);
+      setShowSetLimit(true);
     }
 
     // Update Firestore with the new values
@@ -88,6 +92,24 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
         console.error("Error updating Firestore:", error);
       }
     }
+  };
+  const updateDocument = async (e) => {
+    e.preventDefault();
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const userRef = doc(db, "users", userId);
+
+      try {
+        await updateDoc(userRef, {
+          limitTime: limitTime,
+          isTimeSet: true,
+        });
+      } catch (error) {
+        console.error("Error updating Firestore:", error);
+      }
+    }
+    setShowSetLimit(false);
   };
 
   // Password strength validation using regular expression
@@ -164,6 +186,30 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
                 }
               />
             </span>
+          </form>
+        )}
+        {isLimits && showSetLimit && (
+          <form
+            className="mt-3 flex flex-col w-fit gap-2"
+            onSubmit={(e) => updateDocument(e)}
+          >
+            <label className="text-black text-xl" htmlFor="time">
+              Set Limit Time (in hours):
+            </label>
+            <input
+              className="w-full pt-1 pb-1 pl-3 pr-3 outline-none rounded-md border-0 text-xl"
+              type="number"
+              value={limitTime}
+              min={0}
+              max={24}
+              id="time"
+              onChange={(e) => setLimitTime(e.target.value)}
+            />
+            <input
+              className="w-20 pt-1 pb-1 pl-3 pr-3 outline-none rounded-md border-0 text-2xl cursor-pointer text-[#b473d7] hover:bg-[#4e5e79] font-bold transition"
+              type="submit"
+              value="set"
+            />
           </form>
         )}
       </span>
