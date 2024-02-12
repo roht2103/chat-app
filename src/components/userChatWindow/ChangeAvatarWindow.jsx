@@ -74,13 +74,7 @@ export const ChangeAvatarWindow = ({
 
   return (
     <div className="ChangeAvatarWindow">
-      <span
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <span className="flex items-center justify-between mb-5">
         <h1 className="text-3xl font-bold">Change Avatar</h1>
         <img
           src={cross}

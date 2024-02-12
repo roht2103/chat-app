@@ -99,16 +99,8 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
 
   return (
     <div className="parentalControlWindow min-h-80">
-      <span
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <h1 className="text-3xl font-bold mb-5 text-[#b473d7]">
-          Parental Controls
-        </h1>
+      <span className="flex items-center justify-between mb-5">
+        <h1 className="text-3xl font-bold text-[#b473d7]">Parental Controls</h1>
         <img
           src={cross}
           alt="cross"

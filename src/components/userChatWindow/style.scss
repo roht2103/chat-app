@@ -633,10 +633,9 @@ input::placeholder {
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
-  min-width: 270px;
+  min-width: 300px;
 
   h1 {
-    padding-bottom: 1.5rem;
     color: #253248;
   }
   .cross {
@@ -733,7 +732,7 @@ input::placeholder {
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
-  min-width: 270px;
+  min-width: 300px;
   span {
     h1 {
       // color: #253248;
