@@ -79,7 +79,7 @@ export const SettingWindow = ({
           onClick={() => setChangeAvatarWindow(!isChangeAvatarWindow)}
         >
           <span>
-            <h2>Change Avatar</h2>
+            <h3>Change Avatar</h3>
           </span>
         </div>
         <div className="setting">
