@@ -13,7 +13,6 @@ const GetStartedComponent = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Route with Nav */}
         <Route
           path="/*"
           element={
@@ -22,14 +21,10 @@ const GetStartedComponent = () => {
               <Routes>
                 <Route path="login-page" element={<Login />} />
                 <Route path="/signup-page" element={<SignUp />} />
-
-                {/* Other routes with Nav */}
               </Routes>
             </>
           }
         />
-
-        {/* Route without Nav */}
         <Route path="/login-page" element={<Login />} />
         <Route path="/signup-page" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
