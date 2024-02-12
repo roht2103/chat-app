@@ -175,12 +175,12 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
                 />
               </span>
               <input
-                className="cursor-pointer w-auto rounded-md border-0 text-xl self-center p-2 text-center text-[#b473d7]"
+                className="cursor-pointer w-28 rounded-md border-0 text-xl self-center p-2 text-center text-[#b473d7]"
                 type="submit"
                 value={
-                  isNewToPControls
+                  !isParentKey
                     ? "Create"
-                    : isLimits
+                    : isLimits && isParentKey
                     ? "Turn Off"
                     : "Turn On"
                 }
