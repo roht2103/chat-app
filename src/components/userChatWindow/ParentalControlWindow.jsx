@@ -104,6 +104,7 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
         await updateDoc(userRef, {
           limitTime: limitTime,
           isTimeSet: true,
+          chatDuration: 0,
         });
       } catch (error) {
         console.error("Error updating Firestore:", error);
