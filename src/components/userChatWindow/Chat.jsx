@@ -22,9 +22,8 @@ export const Chat = ({ setShow, isFocusMode }) => {
   const { currentUser } = useContext(AuthContext);
   const [userFocusMode, setUserFocusMode] = useState(false);
   const [userName, setUserName] = useState("");
-  const [limitTime, setLimitTime] = useState(0);
-  const [isLimits, setLimits] = useState(false);
-  const [chatDuration, setChatDuration] = useState(0);
+  const [exceeded, setExceeded] = useState(false);
+
   // const [today, setToday] = useState();
   // const [storedDay, setStoredDay] = useState();
 
@@ -47,81 +46,6 @@ export const Chat = ({ setShow, isFocusMode }) => {
 
     fetchUserData();
   }, [data]);
-
-  useEffect(() => {
-    const fetchCurrUserData = async () => {
-      const currentUser = auth.currentUser;
-      if (currentUser) {
-        const userId = currentUser.uid;
-        const userRef = doc(db, "users", userId);
-
-        try {
-          const userDoc = await getDoc(userRef);
-          if (userDoc.exists()) {
-            const currUserData = userDoc.data();
-            setLimits(currUserData.isLimits || false);
-            setLimitTime(currUserData.limitTime || 0);
-            setChatDuration(currUserData.chatDuration || 0);
-          }
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
-      }
-    };
-
-    fetchCurrUserData();
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Update chat duration only if isLimits is true
-      if (isLimits) {
-        setChatDuration((prevDuration) => prevDuration + 1);
-      }
-    }, 1000); // 1 second interval
-
-    return () => clearInterval(interval);
-  }, [isLimits]);
-
-  useEffect(() => {
-    // Update chat duration in database when it changes
-    updateChatDurationInDatabase();
-  }, [chatDuration]);
-
-  useEffect(() => {
-    // Reset chat duration to 0 at the start of a new day
-    const today = new Date().getDate();
-    const storedDay = parseInt(localStorage.getItem("currentDay"));
-    // const today = 18;
-    // const storedDay = 17;
-    console.log(storedDay);
-    console.log(today);
-    if (today !== storedDay) {
-      setChatDuration(0);
-      localStorage.setItem("currentDay", today);
-    }
-  }, []);
-
-  const updateChatDurationInDatabase = async () => {
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      const userId = currentUser.uid;
-      const userRef = doc(db, "users", userId);
-
-      try {
-        // Fetch user data to preserve other fields
-        const userDoc = await getDoc(userRef);
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          // Update chatDuration in user's profile data
-          await setDoc(userRef, { ...userData, chatDuration });
-        }
-        console.log(chatDuration);
-      } catch (error) {
-        console.error("Error updating chat duration in database:", error);
-      }
-    }
-  };
 
   return (
     <div
@@ -175,12 +99,10 @@ export const Chat = ({ setShow, isFocusMode }) => {
         isFocusMode={isFocusMode}
         userFocusMode={userFocusMode}
         userName={userName}
+        exceeded={exceeded}
+        setExceeded={setExceeded}
       />
-      <Input
-        isLimits={isLimits}
-        limitTime={limitTime}
-        chatDuration={chatDuration}
-      />
+      <Input exceeded={exceeded} setExceeded={setExceeded} />
     </div>
   );
 };

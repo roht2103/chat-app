@@ -201,7 +201,7 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
               className="w-full pt-1 pb-1 pl-3 pr-3 outline-none rounded-md border-0 text-xl"
               type="number"
               value={limitTime}
-              min={0}
+              min={0.01}
               max={24}
               id="time"
               onChange={(e) => setLimitTime(e.target.value)}

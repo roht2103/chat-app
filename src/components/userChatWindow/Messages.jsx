@@ -8,41 +8,23 @@ import { doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase.js";
 import { v4 as uuid } from "uuid";
 import chattingBoy from "../../assets/chatting-boy.json";
-import focusAnimation from "../../assets/focusAnimation.json";
+import watch from "../../assets/watch.json";
 import focus from "../../assets/focus.svg";
 import Lottie from "lottie-react";
 
-export const Messages = ({ isFocusMode, userFocusMode, userName }) => {
+export const Messages = ({
+  isFocusMode,
+  userFocusMode,
+  userName,
+  exceeded,
+  setExceeded,
+}) => {
   const { data } = useContext(ChatContext);
-  // const [isFocusMode, setFocusMode] = useState(false);
   const [messages, setMessages] = useState([]);
-
-  // const fetchUserData = async () => {
-  //   const currentUser = auth.currentUser;
-  //   if (currentUser) {
-  //     const userId = currentUser.uid;
-  //     const userRef = doc(db, "users", userId);
-
-  //     try {
-  //       const userDoc = await getDoc(userRef);
-  //       if (userDoc.exists()) {
-  //         const userData = userDoc.data();
-  //         setFocusMode(userData.isFocus);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //     }
-  //   }
-  // };
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-      // fetchUserData();
-
-      // Update messages only if there are messages in the chat and the focus mode is off
-      if (!isFocusMode && doc.exists()) {
-        setMessages(doc.data().messages);
-      }
+      setMessages(doc.data().messages);
     });
 
     return () => {
@@ -52,23 +34,14 @@ export const Messages = ({ isFocusMode, userFocusMode, userName }) => {
 
   return (
     <div className="messages">
-      {messages && !isFocusMode && messages.length == 0 && (
+      {messages && !isFocusMode && !exceeded && messages.length == 0 && (
         <div className="h-full flex align-center">
           <div className="w-72 m-auto">
             <Lottie loop={true} animationData={chattingBoy} />
           </div>
         </div>
       )}
-      {!isFocusMode &&
-        messages.length > 0 &&
-        messages.map((m, index) => (
-          <Message
-            key={`${m.id}_${m.senderId || uuid()}_${index}`} // Combine message ID with sender ID or generate a new one
-            message={m}
-            isSame={index > 0 && m.senderId === messages[index - 1].senderId}
-          />
-        ))}
-      {isFocusMode && (
+      {isFocusMode ? (
         <div className=" w-full h-full flex items-center">
           <div className="flex flex-col items-center">
             <img className="w-44" src={focus} alt="" />
@@ -79,8 +52,28 @@ export const Messages = ({ isFocusMode, userFocusMode, userName }) => {
             </p>
           </div>
         </div>
+      ) : exceeded ? (
+        <div className="h-full flex flex-col items-center justify-center">
+          <div className="w-72">
+            <Lottie loop={true} animationData={watch} />
+          </div>
+          <p className="ChatfocusIndicator flex items-center">
+            "Sorry, you've reached the time limit for chatting. Come back
+            tommorrow."
+          </p>
+        </div>
+      ) : (
+        messages.length > 0 &&
+        messages.map((m, index) => (
+          <Message
+            key={`${m.id}_${m.senderId || uuid()}_${index}`} // Combine message ID with sender ID or generate a new one
+            message={m}
+            isSame={index > 0 && m.senderId === messages[index - 1].senderId}
+          />
+        ))
       )}
-      {userFocusMode && (
+
+      {!exceeded && userFocusMode && (
         <p className="ChatfocusIndicator">
           "{userName} is currently in focus mode and cannot receive messages."
         </p>
