@@ -79,10 +79,27 @@ export const Input = ({ exceeded, setExceeded }) => {
     // const storedDay = 17;
     // console.log(storedDay);
     // console.log(today);
+    console.log(today, storedDay);
     if (today !== storedDay) {
-      setChatDuration(0);
+      const updateDocument = async () => {
+        const currentUser = auth.currentUser;
+        if (currentUser) {
+          const userId = currentUser.uid;
+          const userRef = doc(db, "users", userId);
+
+          try {
+            await updateDoc(userRef, {
+              chatDuration: 0,
+            });
+          } catch (error) {
+            console.error("Error updating Firestore:", error);
+          }
+        }
+      };
+      updateDocument();
       localStorage.setItem("currentDay", today);
     }
+    console.log(today, storedDay);
   }, []);
 
   const updateChatDurationInDatabase = async () => {
