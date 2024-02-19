@@ -3,6 +3,7 @@ import { Switch } from "antd";
 import { useState, useEffect } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
+import { toast } from "react-toastify";
 
 export const SettingWindow = ({
   setShow,
@@ -54,6 +55,9 @@ export const SettingWindow = ({
         console.error("Error updating user data:", error);
       }
     }
+    checked
+      ? toast.success("Focus mode activated!")
+      : toast.warn("Focus mode deactivated!");
   };
 
   return (
