@@ -76,7 +76,7 @@ export const SettingWindow = ({
         <div
           className="setting"
           style={{ cursor: "pointer" }}
-          onClick={() => setChangeAvatarWindow(!isChangeAvatarWindow)}
+          onClick={() => setChangeAvatarWindow(true)}
         >
           <span>
             <h3>Change Avatar</h3>
@@ -96,7 +96,7 @@ export const SettingWindow = ({
           className="setting"
           style={{ cursor: "pointer" }}
           onClick={() => {
-            setParentalControlWindow(!isParentalControlWindow);
+            setParentalControlWindow(true);
           }}
         >
           <span>

@@ -111,6 +111,8 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
       }
     }
     setShowSetLimit(false);
+    setParentalControlWindow(false);
+    toast.success(`Limit time successfully set to ${limitTime} hours!`);
   };
 
   // Password strength validation using regular expression
@@ -128,7 +130,11 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
           src={cross}
           alt="cross"
           className="cross"
-          onClick={() => setParentalControlWindow(false)}
+          onClick={() => {
+            showSetLimit && isLimits
+              ? toast.warn("Set limit time.!")
+              : setParentalControlWindow(false);
+          }}
         />
       </span>
       <span className="transition hover:bg-[#adbbd3] p-3 rounded-lg">
