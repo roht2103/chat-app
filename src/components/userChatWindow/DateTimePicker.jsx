@@ -31,7 +31,7 @@ export default function DateTimePicker({
           type="submit"
           onClick={() => {
             if (date && time) {
-              setScheduled(!isScheduled);
+              setScheduled(true);
               setShowTimePicker(false);
             }
           }}

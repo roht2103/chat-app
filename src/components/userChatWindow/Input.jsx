@@ -189,6 +189,9 @@ export const Input = ({
                 senderId: currentUser.uid,
                 date: Timestamp.now(),
                 img: downloadURL,
+                isScheduled: isScheduled,
+                scheDuledDate: date,
+                ScehduledTime: time,
               }),
             });
           } catch (error) {
@@ -211,6 +214,9 @@ export const Input = ({
             text,
             senderId: currentUser.uid,
             date: Timestamp.now(),
+            isScheduled: isScheduled,
+            scheDuledDate: date,
+            ScehduledTime: time,
           }),
         });
         await updateDoc(doc(db, "userChats", currentUser.uid), {
@@ -230,27 +236,11 @@ export const Input = ({
     setImg(null);
     setText("");
     clearImage();
-  };
-
-  const handleSchedule = () => {
-    console.log("date: ", date);
-    console.log("time: ", time);
-
-    /*
-      Code for handelling message Scheduling
-    */
-
     setShowTimePicker(false);
     setTime("");
     setDate("");
     setScheduled(false);
   };
-
-  useEffect(() => {
-    if (isScheduled) {
-      handleSchedule();
-    }
-  }, [isScheduled]);
 
   return (
     <div
