@@ -17,13 +17,17 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-export const Chat = ({ setShow, isFocusMode }) => {
+export const Chat = ({ setShow, isFocusMode, isMessageScheduling }) => {
   const { data } = useContext(ChatContext);
   const { currentUser } = useContext(AuthContext);
   const [userFocusMode, setUserFocusMode] = useState(false);
   const [userName, setUserName] = useState("");
   const [exceeded, setExceeded] = useState(false);
+  const [isTimePicker, setShowTimePicker] = useState(false);
+  const [isScheduled, setScheduled] = useState(false);
 
+  const [date, setDate] = useState();
+  const [time, setTime] = useState();
   // const [today, setToday] = useState();
   // const [storedDay, setStoredDay] = useState();
 
@@ -101,8 +105,28 @@ export const Chat = ({ setShow, isFocusMode }) => {
         userName={userName}
         exceeded={exceeded}
         setExceeded={setExceeded}
+        isTimePicker={isTimePicker}
+        setShowTimePicker={setShowTimePicker}
+        isScheduled={isScheduled}
+        setScheduled={setScheduled}
+        date={date}
+        setDate={setDate}
+        time={time}
+        setTime={setTime}
       />
-      <Input exceeded={exceeded} setExceeded={setExceeded} />
+      <Input
+        exceeded={exceeded}
+        setExceeded={setExceeded}
+        isMessageScheduling={isMessageScheduling}
+        isTimePicker={isTimePicker}
+        setShowTimePicker={setShowTimePicker}
+        isScheduled={isScheduled}
+        setScheduled={setScheduled}
+        date={date}
+        setDate={setDate}
+        time={time}
+        setTime={setTime}
+      />
     </div>
   );
 };

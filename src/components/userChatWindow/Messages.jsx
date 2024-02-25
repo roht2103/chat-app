@@ -11,6 +11,7 @@ import chattingBoy from "../../assets/chatting-boy.json";
 import watch from "../../assets/watch.json";
 import focus from "../../assets/focus.svg";
 import Lottie from "lottie-react";
+import DateTimePicker from "./DateTimePicker.jsx";
 
 export const Messages = ({
   isFocusMode,
@@ -18,10 +19,17 @@ export const Messages = ({
   userName,
   exceeded,
   setExceeded,
+  setShowTimePicker,
+  isTimePicker,
+  isScheduled,
+  setScheduled,
+  date,
+  setDate,
+  time,
+  setTime,
 }) => {
   const { data } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
-
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
       setMessages(doc.data().messages);
@@ -72,7 +80,26 @@ export const Messages = ({
           />
         ))
       )}
-
+      {isTimePicker && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <DateTimePicker
+            setShowTimePicker={setShowTimePicker}
+            isScheduled={isScheduled}
+            setScheduled={setScheduled}
+            date={date}
+            setDate={setDate}
+            time={time}
+            setTime={setTime}
+          />
+        </div>
+      )}
       {!exceeded && userFocusMode && (
         <p className="ChatfocusIndicator">
           "{userName} is currently in focus mode and cannot receive messages."

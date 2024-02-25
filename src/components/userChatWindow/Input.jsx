@@ -18,8 +18,22 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db, storage, auth } from "../../firebase";
 import { ToastContainer, toast } from "react-toastify";
+import { CiTimer } from "react-icons/ci";
+import { message } from "antd";
 
-export const Input = ({ exceeded, setExceeded }) => {
+export const Input = ({
+  exceeded,
+  setExceeded,
+  isMessageScheduling,
+  setShowTimePicker,
+  isTimePicker,
+  isScheduled,
+  setScheduled,
+  date,
+  setDate,
+  setTime,
+  time,
+}) => {
   const sentiment = new Sentiment();
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
@@ -55,6 +69,7 @@ export const Input = ({ exceeded, setExceeded }) => {
 
     fetchUserData();
   }, []);
+  !text && setShowTimePicker(false);
   useEffect(() => {
     const interval = setInterval(() => {
       // Update chat duration only if isLimits is true
@@ -79,7 +94,6 @@ export const Input = ({ exceeded, setExceeded }) => {
     // const storedDay = 17;
     // console.log(storedDay);
     // console.log(today);
-    console.log(today, storedDay);
     if (today !== storedDay) {
       const updateDocument = async () => {
         const currentUser = auth.currentUser;
@@ -99,7 +113,6 @@ export const Input = ({ exceeded, setExceeded }) => {
       updateDocument();
       localStorage.setItem("currentDay", today);
     }
-    console.log(today, storedDay);
   }, []);
 
   const updateChatDurationInDatabase = async () => {
@@ -219,10 +232,30 @@ export const Input = ({ exceeded, setExceeded }) => {
     clearImage();
   };
 
+  const handleSchedule = () => {
+    console.log("date: ", date);
+    console.log("time: ", time);
+
+    /*
+      Code for handelling message Scheduling
+    */
+
+    setShowTimePicker(false);
+    setTime("");
+    setDate("");
+    setScheduled(false);
+  };
+
+  useEffect(() => {
+    if (isScheduled) {
+      handleSchedule();
+    }
+  }, [isScheduled]);
+
   return (
     <div
       className="input"
-      title={isFocusMode && "You cant send messages as Focus mode is on"}
+      title={isFocusMode ? "You cant send messages as Focus mode is on" : ""}
     >
       <form onSubmit={(e) => sendMessage(e)}>
         {imgPreview && (
@@ -238,6 +271,7 @@ export const Input = ({ exceeded, setExceeded }) => {
             />
           </div>
         )}
+
         <input
           disabled={isFocusMode || exceeded}
           type="text"
@@ -254,6 +288,13 @@ export const Input = ({ exceeded, setExceeded }) => {
           onChange={(e) => setText(e.target.value)}
         />
         <div className="send">
+          {isMessageScheduling && (text || imgPreview) && (
+            <CiTimer
+              title="Schedule Message"
+              className="w-8 h-8 cursor-pointer "
+              onClick={() => setShowTimePicker(!isTimePicker)}
+            />
+          )}
           <label htmlFor="file">
             <img src={imgIcon} alt="" />
           </label>

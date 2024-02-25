@@ -78,6 +78,7 @@ const SignUpComponent = () => {
                   email,
                   photoURL: downloadURL,
                   isFocus: isFocus,
+                  isMessageScheduling: false,
                   isNewToPControls: true,
                   isLimits: false,
                   parentKey: "",

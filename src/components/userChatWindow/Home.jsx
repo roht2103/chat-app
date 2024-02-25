@@ -12,6 +12,7 @@ import { ParentalControlWindow } from "./ParentalControlWindow.jsx";
 const HomeComponent = () => {
   const [show, setShow] = useState(false);
   const [isFocusMode, setFocusMode] = useState(false);
+  const [isMessageScheduling, setMessageScheduling] = useState(false);
   const [isChatWindow, setChatWindow] = useState(false);
   const [isSettingsWindow, setSettingWindow] = useState(false);
   const [isChangeAvatarWindow, setChangeAvatarWindow] = useState(false);
@@ -27,6 +28,7 @@ const HomeComponent = () => {
         if (userDoc.exists()) {
           const userData = userDoc.data();
           setFocusMode(userData.isFocus);
+          setMessageScheduling(userData.isMessageScheduling);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -53,9 +55,16 @@ const HomeComponent = () => {
             setChangeAvatarWindow={setChangeAvatarWindow}
             isParentalControlWindow={isParentalControlWindow}
             setParentalControlWindow={setParentalControlWindow}
+            isMessageScheduling={isMessageScheduling}
+            setMessageScheduling={setMessageScheduling}
           />
         ) : isChatWindow ? (
-          <Chat setShow={setShow} show={show} isFocusMode={isFocusMode} />
+          <Chat
+            setShow={setShow}
+            show={show}
+            isFocusMode={isFocusMode}
+            isMessageScheduling={isMessageScheduling}
+          />
         ) : (
           <DefaultWindow setShow={setShow} show={show} />
         )}

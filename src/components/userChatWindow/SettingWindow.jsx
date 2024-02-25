@@ -12,6 +12,8 @@ export const SettingWindow = ({
   setChangeAvatarWindow,
   isParentalControlWindow,
   setParentalControlWindow,
+  isMessageScheduling,
+  setMessageScheduling,
 }) => {
   const [isFocusMode, setFocusMode] = useState(true);
 
@@ -59,7 +61,25 @@ export const SettingWindow = ({
       ? toast.success("Focus mode activated!")
       : toast.warn("Focus mode deactivated!");
   };
+  const handleMessageSceduling = async (checked) => {
+    setMessageScheduling(checked);
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const userRef = doc(db, "users", userId);
 
+      try {
+        await updateDoc(userRef, {
+          isMessageScheduling: checked,
+        });
+      } catch (error) {
+        console.error("Error updating user data:", error);
+      }
+    }
+    checked
+      ? toast.success("Scheduled Messaging activated!")
+      : toast.warn("Scheduled Messaging deactivated!");
+  };
   return (
     <div className="settingWindow" onClick={() => setShow(false)}>
       <header>
@@ -109,6 +129,19 @@ export const SettingWindow = ({
           <p>
             Set limits on chatting. After the limit is reached, chatting will be
             disabled. Accessible only by parents with a password.
+          </p>
+        </div>
+        <div className="setting">
+          <span>
+            <h3>Message Scheduling</h3>
+            <Switch
+              checked={isMessageScheduling}
+              onChange={handleMessageSceduling}
+            />
+          </span>
+          <p>
+            By turning on the Message Scheduling, you will be able to schedule
+            mesaage for specific time .
           </p>
         </div>
       </div>

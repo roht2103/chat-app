@@ -745,3 +745,41 @@ input::placeholder {
     }
   }
 }
+
+.datePicker {
+  background-color: #25324893;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  // border: 1px solid red;
+  div {
+    display: flex;
+    align-items: center;
+  }
+  div span {
+    // font-size: 2rem;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 7px;
+  }
+  div input {
+    margin: 5px;
+    height: 30px;
+    padding: 0.5rem;
+    color: #253248;
+    outline: none;
+    font-size: 1.3rem;
+    border: 0px;
+    border-radius: 3px;
+  }
+  div button {
+    // border: 1px solid red;
+    font-size: 1.3rem;
+    line-height: 30px;
+    background-color: #a2a2e8;
+  }
+}
