@@ -95,7 +95,6 @@ export const Chat = ({ setShow, isFocusMode, isMessageScheduling }) => {
           </span>
         </div>
         <div className="chatIcons">
-          <img className="ham" src={videoIcon} alt="videoIcon" />
           <img className="ham" src={more} alt="more" />
         </div>
       </div>
