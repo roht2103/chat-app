@@ -10,12 +10,12 @@ export default function DateTimePicker({
   time,
   setTime,
 }) {
-  console.log("Scheduled date: ", date);
-  console.log("Scheduled time: ", time);
   return (
     <div className="datePicker">
       <div className="flex justify-between items-center">
-        <h1>date time picker</h1>
+        <p className="text-2xl font-bold text-[#b473d7] mb-2">
+          Pick Date and Time
+        </p>
         <img
           src={cross}
           className="h-7 cursor-pointer"
