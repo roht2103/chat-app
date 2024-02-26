@@ -125,7 +125,7 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
   return (
     <div className="parentalControlWindow min-h-80">
       <span className="flex items-center justify-between mb-5">
-        <h1 className="text-3xl font-bold text-[#b473d7]">Parental Controls</h1>
+        <h1 className="text-3xl font-bold text-[#c8a7d9]">Parental Controls</h1>
         <img
           src={cross}
           alt="cross"
@@ -137,9 +137,9 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
           }}
         />
       </span>
-      <span className="transition hover:bg-[#adbbd3] p-3 rounded-lg">
+      <span className="transition hover:bg-[#af89c5af] p-3 rounded-lg">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl text-gray-600">Set limits on chatting</h1>
+          <h1 className="text-3xl text-white-600">Set limits on chatting</h1>
           <Switch checked={isLimits} onChange={handleSwitchChange} />
         </div>
         {authanticate && (
@@ -200,7 +200,7 @@ export const ParentalControlWindow = ({ setParentalControlWindow }) => {
             className="mt-3 flex flex-col w-fit gap-2"
             onSubmit={(e) => updateDocument(e)}
           >
-            <label className="text-black text-xl" htmlFor="time">
+            <label className="text-white text-xl" htmlFor="time">
               Set Limit Time (in hours):
             </label>
             <input
