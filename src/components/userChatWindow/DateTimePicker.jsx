@@ -10,8 +10,8 @@ export default function DateTimePicker({
   time,
   setTime,
 }) {
-  //   console.log(date);
-  //   console.log(time);
+  console.log("Scheduled date: ", date);
+  console.log("Scheduled time: ", time);
   return (
     <div className="datePicker">
       <div className="flex justify-between items-center">

@@ -215,8 +215,8 @@ export const Input = ({
             senderId: currentUser.uid,
             date: Timestamp.now(),
             isScheduled: isScheduled,
-            scheDuledDate: date,
-            ScehduledTime: time,
+            scheduledDate: date,
+            scheduledTime: time,
           }),
         });
         await updateDoc(doc(db, "userChats", currentUser.uid), {

@@ -30,15 +30,52 @@ export const Messages = ({
 }) => {
   const { data } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
+  const [currDate, setCurrDate] = useState();
+  const [currTime, setCurrTime] = useState();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      let d = new Date();
+      let y = d.getFullYear();
+      let m = d.getMonth() + 1;
+      let day = d.getDate() + 1;
+      let h = d.getHours();
+      let min = d.getMinutes();
+      setCurrDate(y + "-" + m + "-" + day);
+      setCurrTime(h + ":" + min);
+    }, 1000); // 1 second interval
+
+    return () => clearInterval(interval);
+  }, [currDate, currTime]);
+
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-      setMessages(doc.data().messages);
+      // Get all messages from Firestore
+      const allMessages = doc.data().messages || [];
+      // Filter messages based on scheduled date and time
+      const filteredMessages = allMessages.filter((m) => {
+        // Check if the message is not scheduled or if its scheduled date and time are in the future
+        return (
+          (!m.isScheduled && m.isScheduled) ||
+          (m.scheduledDate <= currDate && m.scheduledTime <= currTime)
+        );
+      });
+      setMessages(filteredMessages);
     });
 
     return () => {
       unSub();
     };
-  }, [data.chatId, isFocusMode]);
+  }, [data.chatId, isFocusMode, currDate, currTime]);
+
+  // messages.length > 2 &&
+  //   console.log(
+  //     messages[2].isScheduled,
+  //     messages[2].scheduledDate <= currDate,
+  //     messages[2].scheduledTime <= currTime
+  //   );
+  console.log("curr Date: ", currDate);
+  console.log("curr time: ", currTime);
 
   return (
     <div className="messages">
@@ -72,13 +109,27 @@ export const Messages = ({
         </div>
       ) : (
         messages.length > 0 &&
-        messages.map((m, index) => (
-          <Message
-            key={`${m.id}_${m.senderId || uuid()}_${index}`} // Combine message ID with sender ID or generate a new one
-            message={m}
-            isSame={index > 0 && m.senderId === messages[index - 1].senderId}
-          />
-        ))
+        messages.map((m, index) =>
+          m.isScheduled &&
+          m.scheduledDate <= currDate &&
+          m.scheduledTime <= currTime ? (
+            <Message
+              key={`${m.id}_${m.senderId || uuid()}_${index}`}
+              message={m}
+              isSame={index > 0 && m.senderId === messages[index - 1].senderId}
+            />
+          ) : (
+            !m.isScheduled && (
+              <Message
+                key={`${m.id}_${m.senderId || uuid()}_${index}`}
+                message={m}
+                isSame={
+                  index > 0 && m.senderId === messages[index - 1].senderId
+                }
+              />
+            )
+          )
+        )
       )}
       {isTimePicker && (
         <div
