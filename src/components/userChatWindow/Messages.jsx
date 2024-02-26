@@ -74,8 +74,8 @@ export const Messages = ({
   //     messages[2].scheduledDate <= currDate,
   //     messages[2].scheduledTime <= currTime
   //   );
-  console.log("curr Date: ", currDate);
-  console.log("curr time: ", currTime);
+  // console.log("curr Date: ", currDate);
+  // console.log("curr time: ", currTime);
 
   return (
     <div className="messages">
