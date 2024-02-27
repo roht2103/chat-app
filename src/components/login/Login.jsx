@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import BeatLoader from "react-spinners/BeatLoader";
+import { BackgroundGradientAnimation } from "../../ui/background-gradient-animation";
 
 const LoginComponent = () => {
   const navigate = useNavigate();
@@ -59,8 +60,8 @@ const LoginComponent = () => {
     }
   };
   return (
-    <>
-      <div className="cont">
+    <BackgroundGradientAnimation>
+      <div className="cont z-50">
         <section>
           <div>
             <img src={signUpImg} alt="signUp.svg" />
@@ -117,7 +118,7 @@ const LoginComponent = () => {
           </div>
         </section>
       </div>
-    </>
+    </BackgroundGradientAnimation>
   );
 };
 export const Login = LoginComponent;

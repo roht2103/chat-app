@@ -26,7 +26,7 @@
   height: auto;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
-  background-color: #1c2636;
+  background-color: #1c263679;
   padding: 3rem;
   color: white;
   flex-direction: column;
@@ -72,14 +72,14 @@
 .cont section .login-form form p .signInBtn {
   border: 0px;
   color: #b473d7;
-  background-color: #1c2636;
+  background-color: #1c263600;
   font-size: 1.2rem;
   cursor: pointer;
 }
 .cont section div:nth-child(1) {
   width: 40%;
   height: auto;
-  background-color: #b473d7;
+  background-color: #b473d742;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   border-right: 0px;

@@ -8,6 +8,7 @@ import { db, auth } from "../../firebase.js";
 import { doc, getDoc } from "firebase/firestore";
 import { ChangeAvatarWindow } from "./ChangeAvatarWindow.jsx";
 import { ParentalControlWindow } from "./ParentalControlWindow.jsx";
+import { BackgroundGradientAnimation } from "../../ui/background-gradient-animation";
 
 const HomeComponent = () => {
   const [show, setShow] = useState(false);

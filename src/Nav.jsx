@@ -73,6 +73,9 @@ const NavComponents = () => {
           ]}
         />
       </div>
+      <div className="h-screen flex items-center justify-center bg-gray-800">
+        hey
+      </div>
     </>
   );
 };

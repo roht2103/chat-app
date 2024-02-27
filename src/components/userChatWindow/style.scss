@@ -31,6 +31,7 @@
   display: flex;
   flex-direction: column;
   border-right: 1px solid rgb(175, 175, 175);
+  z-index: 50;
 }
 
 .window .chats {
@@ -213,6 +214,7 @@ input::placeholder {
   border-bottom-right-radius: 0.5rem;
   display: flex;
   flex-direction: column;
+  z-index: 55;
 }
 
 .chatInfo {

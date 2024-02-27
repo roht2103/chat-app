@@ -13,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BeatLoader from "react-spinners/BeatLoader";
 import { IoCloudDoneOutline } from "react-icons/io5";
+import { BackgroundGradientAnimation } from "../../ui/background-gradient-animation";
 
 const SignUpComponent = () => {
   const navigate = useNavigate();
@@ -134,8 +135,8 @@ const SignUpComponent = () => {
   };
 
   return (
-    <>
-      <div className="cont">
+    <BackgroundGradientAnimation>
+      <div className="cont z-50">
         <section>
           <div>
             <img src={signUpImg} alt="signUp.svg" />
@@ -224,7 +225,7 @@ const SignUpComponent = () => {
           </div>
         </section>
       </div>
-    </>
+    </BackgroundGradientAnimation>
   );
 };
 
