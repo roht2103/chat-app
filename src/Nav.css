@@ -1,15 +1,17 @@
 .nav {
   display: flex;
-  color: #e9ebed;
-  background-color: #b473d7;
+  color: #b473d7;
+  background-color: #3c4f7136;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1rem 2rem;
   width: 100%;
+  z-index: 50;
+  /* border: 1px solid white; */
 }
 
 .nav h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 .nav span:nth-child(1) {
@@ -27,7 +29,7 @@
   cursor: pointer;
   font-size: 1.7rem;
   color: #b473d7;
-  background-color: #3c4f71;
+  background-color: #3c4f7100;
 }
 .HomeSidebar button:hover {
   transition: 0.2s;
@@ -35,16 +37,19 @@
   color: #3c4f71;
 }
 .HomeSidebar {
+  /* margin-top: 12vh; */
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  z-index: 10;
+  padding-top: 12vh;
+  z-index: 55;
   width: 20vw;
-  height: calc(100% - 5rem);
+  height: 100vh;
   transition: all 0.5s;
   position: absolute;
+  position: fixed;
   left: -100%;
   display: flex;
   flex-direction: column;
-  background-color: #3c4f71;
+  background-color: #23293295;
   min-width: 176px;
 }
 
