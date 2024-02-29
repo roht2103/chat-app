@@ -94,9 +94,9 @@ export const Chat = ({ setShow, isFocusMode, isMessageScheduling }) => {
               : data.user?.displayName}
           </span>
         </div>
-        <div className="chatIcons">
+        {/* <div className="chatIcons">
           <img className="ham" src={more} alt="more" />
-        </div>
+        </div> */}
       </div>
       <Messages
         isFocusMode={isFocusMode}

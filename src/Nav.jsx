@@ -76,7 +76,7 @@ const NavComponents = () => {
           ]}
         />
       </div>
-      <BackgroundGradientAnimation>
+      <BackgroundGradientAnimation className="z-0">
         <div className="flex gap-5 flex-col pt-24  p-10 h-screen bg-[#3c4f71ba]">
           <h1 className="text-white">What's New?</h1>
           <Tabs className=" " tabPosition="left">
@@ -139,7 +139,7 @@ const NavComponents = () => {
                     </p>
                     <button
                       onClick={() => navigate("login-page")}
-                      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+                      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg z-[100%]"
                     >
                       Try Focus Mode Now
                     </button>
@@ -154,7 +154,7 @@ const NavComponents = () => {
               }
               key="Tab2"
             >
-              <div class="bg-[#5a6d8cba] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth z-50">
+              <div class="bg-[#5a6d8cba] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth">
                 <h1 class="text-3xl font-bold text-center text-[#e8e6e6e3] mb-8">
                   Welcome to Message Scheduling: Organize Your Communication
                   Effortlessly
@@ -212,7 +212,10 @@ const NavComponents = () => {
                     your ultimate solution for organized and effective
                     communication.
                   </p>
-                  <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
+                  <button
+                    onClick={() => navigate("login-page")}
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg z-50"
+                  >
                     Try Message Scheduling Now
                   </button>
                 </div>
@@ -226,7 +229,7 @@ const NavComponents = () => {
               }
               key="Tab3"
             >
-              <div class="bg-[#5a6d8cba] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth z-50">
+              <div class="bg-[#5a6d8cba] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth">
                 <h1 class="text-3xl font-bold text-center text-[#e8e6e6e3] mb-8">
                   Welcome to Positive Interactions: Ensuring Respectful
                   Communication
@@ -287,7 +290,10 @@ const NavComponents = () => {
                     Interactions ensures that every interaction contributes to a
                     welcoming and inclusive environment.
                   </p>
-                  <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
+                  <button
+                    onClick={() => navigate("login-page")}
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+                  >
                     Experience Positive Interactions Now
                   </button>
                 </div>
@@ -349,7 +355,10 @@ const NavComponents = () => {
                     empowers you to create a balanced and healthy relationship
                     with technology.
                   </p>
-                  <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
+                  <button
+                    onClick={() => navigate("login-page")}
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+                  >
                     Set Your Limits Now
                   </button>
                 </div>
