@@ -1,4 +1,4 @@
-// import "./Nav.css";
+import "./Nav.css";
 // GetStarted.jsx
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Nav } from "../../Nav.jsx";
