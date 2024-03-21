@@ -23,7 +23,7 @@ export const Chat = ({ setShow, isFocusMode, isMessageScheduling }) => {
   const [userFocusMode, setUserFocusMode] = useState(false);
   const [userName, setUserName] = useState("");
   const [exceeded, setExceeded] = useState(false);
-  const [isTimePicker, setShowTimePicker] = useState(false);
+  const [isTimePicker, setShowTimePicker] = useState(true);
   const [isScheduled, setScheduled] = useState(false);
 
   const [date, setDate] = useState("");

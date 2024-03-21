@@ -182,6 +182,7 @@ export const Input = ({
           console.log("Upload completed successfully");
           try {
             const downloadURL = await getDownloadURL(storageRef);
+            console.log(downloadURL);
             await updateDoc(doc(db, "chats", data.chatId), {
               messages: arrayUnion({
                 id: uuid(),

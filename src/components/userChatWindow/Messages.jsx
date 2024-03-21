@@ -30,43 +30,54 @@ export const Messages = ({
 }) => {
   const { data } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
-  const [currDate, setCurrDate] = useState();
+  // const [currDate, setCurrDate] = useState();
   const [currTime, setCurrTime] = useState();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      let d = new Date();
-      let y = d.getFullYear();
-      let m = d.getMonth() + 1;
-      let day = d.getDate() + 1;
-      let h = d.getHours();
-      let min = d.getMinutes();
-      setCurrDate(y + "-" + m + "-" + day);
-      setCurrTime(h + ":" + min);
+      // let d = new Date();
+      // let y = d.getFullYear();
+      // let m = d.getMonth() + 1;
+      // let day = d.getDate() + 1;
+      // let h = d.getHours();
+      // let min = d.getMinutes();
+      // setCurrDate(y + "-" + m + "-" + day);
+      // setCurrTime(h + ":" + min);
+      setCurrTime(new Date().valueOf());
     }, 1000); // 1 second interval
 
     return () => clearInterval(interval);
-  }, [currDate, currTime]);
+  }, [currTime]);
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
       // Get all messages from Firestore
       const allMessages = doc.data().messages || [];
       // Filter messages based on scheduled date and time
-      const filteredMessages = allMessages.filter((m) => {
-        // Check if the message is not scheduled or if its scheduled date and time are in the future
-        return (
-          (!m.isScheduled && m.isScheduled) ||
-          (m.scheduledDate <= currDate && m.scheduledTime <= currTime)
-        );
+      allMessages.forEach((element) => {
+        const str =
+          element.scheduledDate + "T" + element.scheduledTime + ":00.000";
+
+        const sheduled = new Date(str);
+        // console.log(element.scheduledDate, element.scheduledTime);
+        // console.log(str);
+        // console.log(new Date().toLocaleDateString());
+        // console.log(sheduled, currTime, sheduled - currTime);
+        if (sheduled <= currTime) {
+          element.isScheduled = false;
+          // console.log("chnaged");
+        }
       });
+      // console.log("tick");
+      const filteredMessages = allMessages.filter((m) => !m.isScheduled);
+      // console.log(allMessages.length, filteredMessages.length);
       setMessages(filteredMessages);
     });
 
     return () => {
       unSub();
     };
-  }, [data.chatId, isFocusMode, currDate, currTime]);
+  }, [data.chatId, isFocusMode, currTime]);
 
   // messages.length > 2 &&
   //   console.log(
