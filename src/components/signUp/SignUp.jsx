@@ -36,8 +36,10 @@ const SignUpComponent = () => {
       toast.warn("Please select an avatar file.");
       return; // Exit function early
     }
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const isValid = email.match(emailPattern);
 
-    if (password === cnfPassword) {
+    if (password === cnfPassword && isValid) {
       if (password.length > 6 || cnfPassword.length > 6) {
         setLoading(true);
         try {
@@ -130,7 +132,9 @@ const SignUpComponent = () => {
         toast("Password length must be greater than 6 Characters!");
       }
     } else {
-      toast("Confirm Password doesn't match Password!");
+      if (password != cnfPassword)
+        toast("Confirm Password doesn't match Password!");
+      if (!isValid) toast("Enter valid email!");
     }
   };
 
