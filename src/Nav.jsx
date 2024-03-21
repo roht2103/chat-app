@@ -5,7 +5,7 @@ import { GoogleGeminiEffect } from "./ui/google-gemini-effect";
 import { useNavigate } from "react-router-dom";
 import messageicon from "./assets/message-icon.svg";
 import ham from "./assets/ham2.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import { Tabs } from "antd";
 import fm from "./assets/fm.png";
@@ -23,6 +23,19 @@ const NavComponents = () => {
   const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <>
       <div
@@ -76,21 +89,25 @@ const NavComponents = () => {
           ]}
         />
       </div>
-      <BackgroundGradientAnimation className="z-0">
-        <div className="flex gap-5 flex-col pt-24  p-10 h-screen bg-[#3c4f71ba]">
+      {/* <BackgroundGradientAnimation className="z-0"> */}
+      <div className="bgimage">
+        <div className="flex gap-5 flex-col pt-24  p-10 pb-0 h-screen bg-[#373c4290]">
           <h1 className="text-white">What's New?</h1>
-          <Tabs className=" " tabPosition="left">
+          <Tabs
+            className="tabs"
+            tabPosition={screenWidth < 800 ? "top" : "left"}
+          >
             <Tabs.TabPane
-              tab={<span className=" text-xl font-bold">Focus Mode</span>}
+              tab={<span className="text-xl font-bold">Focus Mode</span>}
               key="Tab1"
             >
               <div>
-                <div class="bg-[#5a6d8cba] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth z-50">
+                <div class="bg-[#5a6d8c47] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth z-50">
                   <h1 class="text-3xl font-bold text-center text-[#e8e6e6e3] mb-8">
                     Welcome to Focus Mode: Your Gateway to Productivity
                   </h1>
 
-                  <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8 mb-8">
+                  <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8 mb-8">
                     <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                       What is Focus Mode?
                     </h2>
@@ -104,7 +121,7 @@ const NavComponents = () => {
                   </div>
 
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8">
+                    <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8">
                       <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                         Key Features:
                       </h2>
@@ -114,7 +131,7 @@ const NavComponents = () => {
                       </ul>
                     </div>
 
-                    <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8">
+                    <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8">
                       <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                         Why Choose Focus Mode?
                       </h2>
@@ -126,7 +143,7 @@ const NavComponents = () => {
                     </div>
                   </div>
 
-                  <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8 mt-8 text-center">
+                  <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8 mt-8 text-center">
                     <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                       Ready to Unleash Your Potential?
                     </h2>
@@ -154,13 +171,13 @@ const NavComponents = () => {
               }
               key="Tab2"
             >
-              <div class="bg-[#5a6d8cba] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth">
+              <div class="bg-[#5a6d8c47] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth">
                 <h1 class="text-3xl font-bold text-center text-[#e8e6e6e3] mb-8">
                   Welcome to Message Scheduling: Organize Your Communication
                   Effortlessly
                 </h1>
 
-                <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8 mb-8">
+                <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8 mb-8">
                   <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                     What is Message Scheduling?
                   </h2>
@@ -173,7 +190,7 @@ const NavComponents = () => {
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8">
+                  <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8">
                     <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                       Key Features:
                     </h2>
@@ -184,7 +201,7 @@ const NavComponents = () => {
                     </ul>
                   </div>
 
-                  <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8">
+                  <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8">
                     <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                       Why Choose Message Scheduling?
                     </h2>
@@ -200,7 +217,7 @@ const NavComponents = () => {
                   </div>
                 </div>
 
-                <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8 mt-8 text-center">
+                <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8 mt-8 text-center">
                   <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                     Ready to Streamline Your Communication?
                   </h2>
@@ -229,13 +246,13 @@ const NavComponents = () => {
               }
               key="Tab3"
             >
-              <div class="bg-[#5a6d8cba] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth">
+              <div class="bg-[#5a6d8c47] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth">
                 <h1 class="text-3xl font-bold text-center text-[#e8e6e6e3] mb-8">
                   Welcome to Positive Interactions: Ensuring Respectful
                   Communication
                 </h1>
 
-                <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8 mb-8">
+                <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8 mb-8">
                   <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                     What are Positive Interactions?
                   </h2>
@@ -248,7 +265,7 @@ const NavComponents = () => {
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8">
+                  <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8">
                     <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                       Key Features:
                     </h2>
@@ -265,7 +282,7 @@ const NavComponents = () => {
                     </ul>
                   </div>
 
-                  <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8">
+                  <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8">
                     <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                       Why Choose Positive Interactions?
                     </h2>
@@ -279,7 +296,7 @@ const NavComponents = () => {
                   </div>
                 </div>
 
-                <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8 mt-8 text-center">
+                <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8 mt-8 text-center">
                   <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                     Ready to Promote Respectful Communication?
                   </h2>
@@ -303,12 +320,12 @@ const NavComponents = () => {
               tab={<span className=" text-xl font-bold">Limits on Usage</span>}
               key="Tab4"
             >
-              <div class="bg-[#5a6d8cba] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth z-50">
+              <div class="bg-[#5a6d8c47] rounded-md py-8 px-4 h-[34rem] w-[100%] overflow-auto scroll-smooth z-50">
                 <h1 class="text-3xl font-bold text-center text-[#e8e6e6e3] mb-8">
                   Welcome to App Usage Limits: Empowering Healthy Digital Habits
                 </h1>
 
-                <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8 mb-8">
+                <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8 mb-8">
                   <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                     What are App Usage Limits?
                   </h2>
@@ -321,7 +338,7 @@ const NavComponents = () => {
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8">
+                  <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8">
                     <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                       Key Features:
                     </h2>
@@ -332,7 +349,7 @@ const NavComponents = () => {
                     </ul>
                   </div>
 
-                  <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8">
+                  <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8">
                     <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                       Why Choose App Usage Limits?
                     </h2>
@@ -344,7 +361,7 @@ const NavComponents = () => {
                   </div>
                 </div>
 
-                <div class="bg-[#3c4f71ba] rounded-lg shadow-md p-8 mt-8 text-center">
+                <div class="bg-[#3c4f7166] rounded-lg shadow-md p-8 mt-8 text-center">
                   <h2 class="text-2xl font-semibold text-[#b473d7] mb-4">
                     Ready to Foster Healthy Digital Habits?
                   </h2>
@@ -366,7 +383,8 @@ const NavComponents = () => {
             </Tabs.TabPane>
           </Tabs>
         </div>
-      </BackgroundGradientAnimation>
+      </div>
+      {/* </BackgroundGradientAnimation> */}
     </>
   );
 };
