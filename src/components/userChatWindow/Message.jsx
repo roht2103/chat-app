@@ -51,7 +51,7 @@ export const Message = ({ message, isSame }) => {
         <div className="messageContent">
           <p style={{ display: "flex", flexDirection: "column" }}>
             {message.img && (
-              <img className="inputImg" src={message.img} alt="" />
+              <img className="inputImg h-36 " src={message.img} alt="" />
             )}
             <span style={{ marginRight: "2rem" }}>{message.text}</span>
             <i

@@ -44,7 +44,7 @@ export const Messages = ({
       // setCurrDate(y + "-" + m + "-" + day);
       // setCurrTime(h + ":" + min);
       setCurrTime(new Date().valueOf());
-    }, 1000); // 1 second interval
+    }, 2000); // 1 second interval
 
     return () => clearInterval(interval);
   }, [currTime]);

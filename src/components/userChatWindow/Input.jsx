@@ -69,7 +69,7 @@ export const Input = ({
 
     fetchUserData();
   }, []);
-  !text && setShowTimePicker(false);
+  !text && !imgPreview && setShowTimePicker(false);
   useEffect(() => {
     const interval = setInterval(() => {
       // Update chat duration only if isLimits is true
@@ -285,7 +285,11 @@ export const Input = ({
             <CiTimer
               title="Schedule Message"
               className="w-8 h-8 cursor-pointer "
-              onClick={() => setShowTimePicker(!isTimePicker)}
+              onClick={() => {
+                setShowTimePicker(!isTimePicker);
+                console.log("clicked");
+                console.log(isTimePicker);
+              }}
             />
           )}
           <label htmlFor="file">
