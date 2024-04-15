@@ -1,0 +1,55 @@
+"filename", "language", "JavaScript JSX", "CSS", "JavaScript", "TypeScript JSX", "TypeScript", "XML", "JSON", "SCSS", "comment", "blank", "total"
+"c:\Users\rohit\Documents\GitHub\chat-app\src\App.css", "CSS", 0, 6, 0, 0, 0, 0, 0, 0, 0, 1, 7
+"c:\Users\rohit\Documents\GitHub\chat-app\src\App.jsx", "JavaScript JSX", 48, 0, 0, 0, 0, 0, 0, 0, 3, 6, 57
+"c:\Users\rohit\Documents\GitHub\chat-app\src\Nav.css", "CSS", 0, 67, 0, 0, 0, 0, 0, 0, 2, 7, 76
+"c:\Users\rohit\Documents\GitHub\chat-app\src\Nav.jsx", "JavaScript JSX", 369, 0, 0, 0, 0, 0, 0, 0, 2, 21, 392
+"c:\Users\rohit\Documents\GitHub\chat-app\src\TabsComponent.jsx", "JavaScript JSX", 72, 0, 0, 0, 0, 0, 0, 0, 0, 6, 78
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\avatar.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\back.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\chatting-boy.json", "JSON", 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\cn.ts", "TypeScript", 0, 0, 0, 0, 5, 0, 0, 0, 0, 2, 7
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\cross-white.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\cross.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\eye-close.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\eye.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\focus.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\focusAnimation.json", "JSON", 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\ham.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\ham2.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\img.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\message-icon.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\more.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\send.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\sign-up-bg.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\signUp.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\video-solid.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\assets\watch.json", "JSON", 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\getstarted\GetStarted.jsx", "JavaScript JSX", 32, 0, 0, 0, 0, 0, 0, 0, 2, 3, 37
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\login\Login.jsx", "JavaScript JSX", 116, 0, 0, 0, 0, 0, 0, 0, 6, 3, 125
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\signUp\SignUp.css", "CSS", 0, 133, 0, 0, 0, 0, 0, 0, 9, 2, 144
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\signUp\SignUp.jsx", "JavaScript JSX", 221, 0, 0, 0, 0, 0, 0, 0, 2, 14, 237
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\ChangeAvatarWindow.jsx", "JavaScript JSX", 108, 0, 0, 0, 0, 0, 0, 0, 2, 4, 114
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\Chat.jsx", "JavaScript JSX", 121, 0, 0, 0, 0, 0, 0, 0, 5, 6, 132
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\ChatUser.jsx", "JavaScript JSX", 58, 0, 0, 0, 0, 0, 0, 0, 2, 10, 70
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\Chats.jsx", "JavaScript JSX", 49, 0, 0, 0, 0, 0, 0, 0, 0, 5, 54
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\DateTimePicker.jsx", "JavaScript JSX", 44, 0, 0, 0, 0, 0, 0, 0, 0, 1, 45
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\DefaultWindow.jsx", "JavaScript JSX", 29, 0, 0, 0, 0, 0, 0, 0, 0, 1, 30
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\Home.jsx", "JavaScript JSX", 86, 0, 0, 0, 0, 0, 0, 0, 0, 3, 89
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\Input.jsx", "JavaScript JSX", 288, 0, 0, 0, 0, 0, 0, 0, 15, 18, 321
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\Message.jsx", "JavaScript JSX", 72, 0, 0, 0, 0, 0, 0, 0, 0, 2, 74
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\Messages.jsx", "JavaScript JSX", 137, 0, 0, 0, 0, 0, 0, 0, 27, 9, 173
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\Nav.jsx", "JavaScript JSX", 78, 0, 0, 0, 0, 0, 0, 0, 2, 3, 83
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\ParentalControlWindow.jsx", "JavaScript JSX", 208, 0, 0, 0, 0, 0, 0, 0, 5, 13, 226
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\Search.jsx", "JavaScript JSX", 99, 0, 0, 0, 0, 0, 0, 0, 0, 4, 103
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\SettingWindow.jsx", "JavaScript JSX", 140, 0, 0, 0, 0, 0, 0, 0, 2, 9, 151
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\Sidebar.jsx", "JavaScript JSX", 28, 0, 0, 0, 0, 0, 0, 0, 0, 1, 29
+"c:\Users\rohit\Documents\GitHub\chat-app\src\components\userChatWindow\style.scss", "SCSS", 0, 0, 0, 0, 0, 0, 0, 690, 25, 79, 794
+"c:\Users\rohit\Documents\GitHub\chat-app\src\context\AuthContext.jsx", "JavaScript JSX", 20, 0, 0, 0, 0, 0, 0, 0, 0, 5, 25
+"c:\Users\rohit\Documents\GitHub\chat-app\src\context\ChatContext.jsx", "JavaScript JSX", 30, 0, 0, 0, 0, 0, 0, 0, 0, 2, 32
+"c:\Users\rohit\Documents\GitHub\chat-app\src\firebase.js", "JavaScript", 0, 0, 16, 0, 0, 0, 0, 0, 0, 3, 19
+"c:\Users\rohit\Documents\GitHub\chat-app\src\index.css", "CSS", 0, 7, 0, 0, 0, 0, 0, 0, 2, 2, 11
+"c:\Users\rohit\Documents\GitHub\chat-app\src\main.jsx", "JavaScript JSX", 29, 0, 0, 0, 0, 0, 0, 0, 0, 2, 31
+"c:\Users\rohit\Documents\GitHub\chat-app\src\ui\Spotlight.tsx", "TypeScript JSX", 0, 0, 0, 54, 0, 0, 0, 0, 0, 3, 57
+"c:\Users\rohit\Documents\GitHub\chat-app\src\ui\background-gradient-animation.tsx", "TypeScript JSX", 0, 0, 0, 164, 0, 0, 0, 0, 0, 8, 172
+"c:\Users\rohit\Documents\GitHub\chat-app\src\ui\google-gemini-effect.tsx", "TypeScript JSX", 0, 0, 0, 149, 0, 0, 0, 0, 1, 6, 156
+"Total", "-", 2482, 213, 16, 367, 5, 16, 3, 690, 114, 264, 4170
