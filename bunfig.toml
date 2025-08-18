@@ -1,0 +1,16 @@
+[install]
+# Install packages from npm registry
+registry = "https://registry.npmjs.org/"
+
+# Cache dependencies
+cache = true
+
+# Use exact versions for lockfile
+exact = false
+
+[install.scopes]
+# Configure scoped packages if needed
+
+[run]
+# Use bun runtime for better performance
+bun = true
